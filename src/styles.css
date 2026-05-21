@@ -1,0 +1,46 @@
+body {
+  margin: 0;
+  font-family: Arial;
+}
+
+.topbar {
+  background: green;
+  color: white;
+  text-align: center;
+  padding: 8px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  align-items: center;
+  background: #f5f5f5;
+}
+
+.nav-links a {
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.hero {
+  display: flex;
+  padding: 40px;
+}
+
+.hero-left img {
+  width: 400px;
+  border-radius: 10px;
+}
+
+.hero-right {
+  padding: 20px;
+}
+
+.buttons a {
+  margin-right: 10px;
+  padding: 10px;
+  background: green;
+  color: white;
+  text-decoration: none;
+}
