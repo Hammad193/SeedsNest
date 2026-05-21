@@ -24,8 +24,19 @@ function App() {
   return (
     <>
       <Navbar />
-      
-      <ToastContainer mt-20 />
+      <ToastContainer 
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={true}
+        newestOnTop={true}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover={false}
+        theme="light"
+        style={{ zIndex: 99999 }} 
+      />
 
       <Routes>
         <Route path="/" element={<Home />} />
