@@ -1,5 +1,6 @@
 import React from "react";
 import { ShoppingCart } from "lucide-react";
+import { motion } from "framer-motion";
 
 const products = [
   {
@@ -58,71 +59,27 @@ const products = [
     image:
       "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?q=80&w=1200&auto=format&fit=crop",
   },
-  {
-    name: "Rose Flower Seeds",
-    price: "Rs. 560",
-    sale: "-22%",
-    image:
-      "https://images.unsplash.com/photo-1490750967868-88aa4486c946?q=80&w=1200&auto=format&fit=crop",
-  },
-  {
-    name: "Gardening Gloves",
-    price: "Rs. 750",
-    sale: "-11%",
-    image:
-      "https://images.unsplash.com/photo-1526397751294-331021109fbd?q=80&w=1200&auto=format&fit=crop",
-  },
-  {
-    name: "Indoor Palm Plant",
-    price: "Rs. 1,850",
-    sale: "-17%",
-    image:
-      "https://images.unsplash.com/photo-1512428813834-c702c7702b78?q=80&w=1200&auto=format&fit=crop",
-  },
-  {
-    name: "Organic Compost",
-    price: "Rs. 1,100",
-    sale: "-19%",
-    image:
-      "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?q=80&w=1200&auto=format&fit=crop",
-  },
-  {
-    name: "Mint Herb Seeds",
-    price: "Rs. 430",
-    sale: "-13%",
-    image:
-      "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?q=80&w=1200&auto=format&fit=crop",
-  },
-  {
-    name: "Ceramic Plant Pot",
-    price: "Rs. 1,650",
-    sale: "-16%",
-    image:
-      "https://images.unsplash.com/photo-1485955900006-10f4d324d411?q=80&w=1200&auto=format&fit=crop",
-  },
-  {
-    name: "Garden Water Spray",
-    price: "Rs. 890",
-    sale: "-21%",
-    image:
-      "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?q=80&w=1200&auto=format&fit=crop",
-  },
-  {
-    name: "Cactus Indoor Plant",
-    price: "Rs. 1,350",
-    sale: "-24%",
-    image:
-      "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1200&auto=format&fit=crop",
-  },
 ];
 
 const PopularProducts = () => {
   return (
-    <section className="bg-white py-20">
+    <motion.section
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+      className="bg-white py-20"
+    >
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
 
         {/* Heading */}
-        <div className="text-center mb-14">
+        <motion.div
+          initial={{ y: -20, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="text-center mb-14"
+        >
           <p className="text-green-600 font-semibold uppercase tracking-[4px]">
             Top Rated Products
           </p>
@@ -135,15 +92,20 @@ const PopularProducts = () => {
             Discover our premium collection of seeds, plants,
             gardening essentials, and organic care products.
           </p>
-        </div>
+        </motion.div>
 
         {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
 
           {products.map((product, index) => (
-            <div
+            <motion.div
               key={index}
-              className="group bg-white rounded-[30px] overflow-hidden border border-gray-100 shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-3"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -10, scale: 1.02 }}
+              className="group bg-white rounded-[30px] overflow-hidden border border-gray-100 shadow-md hover:shadow-2xl transition-all duration-500"
             >
 
               {/* Product Image */}
@@ -175,31 +137,37 @@ const PopularProducts = () => {
                     {product.price}
                   </p>
 
-                  <button className="w-12 h-12 rounded-full bg-green-100 text-green-600 flex items-center justify-center hover:bg-green-600 hover:text-white transition-all duration-300 hover:scale-110">
+                  <motion.button
+                    whileHover={{ scale: 1.15, rotate: 5 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="w-12 h-12 rounded-full bg-green-100 text-green-600 flex items-center justify-center hover:bg-green-600 hover:text-white transition-all duration-300"
+                  >
                     <ShoppingCart className="w-5 h-5" />
-                  </button>
+                  </motion.button>
 
                 </div>
 
               </div>
-            </div>
+            </motion.div>
           ))}
 
         </div>
+
         {/* View All Products Button */}
-<div className="flex justify-center mt-14">
-  <button className="group bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-full font-semibold text-lg shadow-lg transition-all duration-300 hover:scale-105 flex items-center gap-3">
-    
-    View All Products
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          className="flex justify-center mt-14"
+        >
+          <button className="group bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-full font-semibold text-lg shadow-lg transition-all duration-300 flex items-center gap-3">
+            View All Products
+            <span className="group-hover:translate-x-1 transition duration-300">
+              →
+            </span>
+          </button>
+        </motion.div>
 
-    <span className="group-hover:translate-x-1 transition duration-300">
-      →
-    </span>
-
-  </button>
-</div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

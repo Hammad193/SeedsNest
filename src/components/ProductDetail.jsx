@@ -13,11 +13,15 @@ const ProductDetail = () => {
 
   if (!product) {
     return (
-      <div className="py-32 text-center">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="py-32 text-center"
+      >
         <h2 className="text-3xl font-bold text-red-500">
           Product not found
         </h2>
-      </div>
+      </motion.div>
     );
   }
 
@@ -34,7 +38,12 @@ const ProductDetail = () => {
   const suggested = products.filter((p) => p.id !== product.id);
 
   return (
-    <section className="min-h-screen bg-gray-50 mt-20 py-20 px-6 md:px-16">
+    <motion.section
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="min-h-screen bg-gray-50 mt-20 py-20 px-6 md:px-16"
+    >
 
       <div className="max-w-7xl mx-auto">
 
@@ -43,8 +52,9 @@ const ProductDetail = () => {
 
           {/* IMAGE */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ x: -60, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
             className="bg-white rounded-3xl shadow-lg p-5"
           >
             <img
@@ -56,13 +66,18 @@ const ProductDetail = () => {
 
           {/* DETAILS */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ x: 60, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
           >
 
-            <span className="bg-green-100 text-green-700 px-4 py-1 rounded-full text-sm font-medium">
+            <motion.span
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              className="bg-green-100 text-green-700 px-4 py-1 rounded-full text-sm font-medium"
+            >
               {product.category}
-            </span>
+            </motion.span>
 
             <h1 className="text-4xl font-bold text-gray-800 mt-5">
               {product.name}
@@ -72,9 +87,13 @@ const ProductDetail = () => {
               {product.description}
             </p>
 
-            <div className="mt-8 text-3xl font-bold text-green-700">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="mt-8 text-3xl font-bold text-green-700"
+            >
               Rs {selectedSize.price}
-            </div>
+            </motion.div>
 
             {/* SIZE */}
             <div className="mt-8">
@@ -85,8 +104,10 @@ const ProductDetail = () => {
               <div className="flex gap-3 flex-wrap">
 
                 {product.sizes.map((item, index) => (
-                  <button
+                  <motion.button
                     key={index}
+                    whileHover={{ scale: 1.08 }}
+                    whileTap={{ scale: 0.95 }}
                     onClick={() => setSelectedSize(item)}
                     className={`px-5 py-2 rounded-full border transition ${
                       selectedSize.size === item.size
@@ -95,18 +116,20 @@ const ProductDetail = () => {
                     }`}
                   >
                     {item.size}
-                  </button>
+                  </motion.button>
                 ))}
 
               </div>
             </div>
 
-            <button
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={handleAddToCart}
-              className="mt-10 bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg transition hover:scale-105"
+              className="mt-10 bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg transition"
             >
               Add To Cart
-            </button>
+            </motion.button>
 
           </motion.div>
         </div>
@@ -128,7 +151,7 @@ const ProductDetail = () => {
                   behavior: "smooth",
                 })
               }
-              className="absolute left-0 top-1/2 -translate-y-1/2 bg-white shadow-lg w-10 h-10 rounded-full flex items-center justify-center z-10 hover:bg-green-600 hover:text-white"
+              className="absolute left-0 top-1/2 -translate-y-1/2 bg-white shadow-lg w-10 h-10 rounded-full flex items-center justify-center z-10 hover:bg-green-600 hover:text-white transition"
             >
               ‹
             </button>
@@ -141,7 +164,7 @@ const ProductDetail = () => {
                   behavior: "smooth",
                 })
               }
-              className="absolute right-0 top-1/2 -translate-y-1/2 bg-white shadow-lg w-10 h-10 rounded-full flex items-center justify-center z-10 hover:bg-green-600 hover:text-white"
+              className="absolute right-0 top-1/2 -translate-y-1/2 bg-white shadow-lg w-10 h-10 rounded-full flex items-center justify-center z-10 hover:bg-green-600 hover:text-white transition"
             >
               ›
             </button>
@@ -151,26 +174,33 @@ const ProductDetail = () => {
               id="slider"
               className="flex gap-6 overflow-hidden px-10 scroll-smooth"
             >
-              {suggested.map((item) => (
-                <Link
+              {suggested.map((item, index) => (
+                <motion.div
                   key={item.id}
-                  to={`/product/${item.id}`}
-                  className="min-w-62.5 bg-white rounded-[30px] overflow-hidden border border-gray-100 shadow-md hover:shadow-2xl transition hover:-translate-y-2 shrink-0"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  viewport={{ once: true }}
                 >
-                  <img
-                    src={item.image}
-                    className="w-full h-56 object-cover group-hover:scale-110 transition"
-                  />
+                  <Link
+                    to={`/product/${item.id}`}
+                    className="min-w-62.5 bg-white rounded-[30px] overflow-hidden border border-gray-100 shadow-md hover:shadow-2xl transition hover:-translate-y-2 shrink-0 block"
+                  >
+                    <img
+                      src={item.image}
+                      className="w-full h-56 object-cover transition hover:scale-110 duration-500"
+                    />
 
-                  <div className="p-4">
-                    <h3 className="font-bold text-gray-800 line-clamp-1">
-                      {item.name}
-                    </h3>
-                    <p className="text-green-600 font-bold mt-2">
-                      Rs {item.price}
-                    </p>
-                  </div>
-                </Link>
+                    <div className="p-4">
+                      <h3 className="font-bold text-gray-800 line-clamp-1">
+                        {item.name}
+                      </h3>
+                      <p className="text-green-600 font-bold mt-2">
+                        Rs {item.price}
+                      </p>
+                    </div>
+                  </Link>
+                </motion.div>
               ))}
             </div>
 
@@ -178,7 +208,7 @@ const ProductDetail = () => {
         </div>
 
       </div>
-    </section>
+    </motion.section>
   );
 };
 

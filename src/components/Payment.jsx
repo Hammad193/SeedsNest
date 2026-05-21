@@ -24,6 +24,7 @@ export default function Payment() {
         <motion.div
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.5 }}
           className="bg-white p-10 rounded-2xl shadow-lg text-center"
         >
           <h1 className="text-3xl font-bold text-green-600">
@@ -38,20 +39,32 @@ export default function Payment() {
   }
 
   return (
-    <section className="min-h-screen bg-gray-50 mt-24 py-20 px-6 md:px-20">
+    <motion.section
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6 }}
+      className="min-h-screen bg-gray-50 mt-24 py-20 px-6 md:px-20"
+    >
 
       <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10">
 
         {/* ORDER SUMMARY */}
-        <div className="bg-white p-6 rounded-2xl shadow-md">
-
+        <motion.div
+          initial={{ x: -40, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="bg-white p-6 rounded-2xl shadow-md"
+        >
           <h2 className="text-2xl font-bold mb-6">
             Order Summary
           </h2>
 
           {cart.map((item) => (
-            <div
+            <motion.div
               key={item.id}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
               className="flex justify-between border-b py-3"
             >
               <div>
@@ -64,57 +77,73 @@ export default function Payment() {
               <p className="font-bold text-green-600">
                 Rs {item.price * item.qty}
               </p>
-            </div>
+            </motion.div>
           ))}
 
           <div className="flex justify-between mt-6 text-xl font-bold">
             <span>Total</span>
             <span className="text-green-600">Rs {total}</span>
           </div>
-
-        </div>
+        </motion.div>
 
         {/* PAYMENT SECTION */}
-        <div className="bg-white p-6 rounded-2xl shadow-md">
-
+        <motion.div
+          initial={{ x: 40, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="bg-white p-6 rounded-2xl shadow-md"
+        >
           <h2 className="text-2xl font-bold mb-6">
             Payment Method
           </h2>
 
           <div className="space-y-4">
 
-            <label className="flex items-center gap-3 border p-3 rounded-xl cursor-pointer">
+            <motion.label
+              whileHover={{ scale: 1.02 }}
+              className="flex items-center gap-3 border p-3 rounded-xl cursor-pointer"
+            >
               <input
                 type="radio"
                 checked={method === "card"}
                 onChange={() => setMethod("card")}
               />
               Credit / Debit Card
-            </label>
+            </motion.label>
 
-            <label className="flex items-center gap-3 border p-3 rounded-xl cursor-pointer">
+            <motion.label
+              whileHover={{ scale: 1.02 }}
+              className="flex items-center gap-3 border p-3 rounded-xl cursor-pointer"
+            >
               <input
                 type="radio"
                 checked={method === "cod"}
                 onChange={() => setMethod("cod")}
               />
               Cash on Delivery
-            </label>
+            </motion.label>
 
-            <label className="flex items-center gap-3 border p-3 rounded-xl cursor-pointer">
+            <motion.label
+              whileHover={{ scale: 1.02 }}
+              className="flex items-center gap-3 border p-3 rounded-xl cursor-pointer"
+            >
               <input
                 type="radio"
                 checked={method === "paypal"}
                 onChange={() => setMethod("paypal")}
               />
               PayPal
-            </label>
+            </motion.label>
 
           </div>
 
-          {/* FAKE CARD INPUT */}
           {method === "card" && (
-            <div className="mt-6 space-y-3">
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              transition={{ duration: 0.4 }}
+              className="mt-6 space-y-3"
+            >
               <input
                 placeholder="Card Number"
                 className="w-full border p-3 rounded-xl"
@@ -133,20 +162,21 @@ export default function Payment() {
                   className="w-1/2 border p-3 rounded-xl"
                 />
               </div>
-            </div>
+            </motion.div>
           )}
 
-          {/* PAY BUTTON */}
-          <button
+          <motion.button
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
             onClick={handlePayment}
             className="mt-8 w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl font-semibold transition"
           >
             Place Payment (Rs {total})
-          </button>
+          </motion.button>
 
-        </div>
+        </motion.div>
 
       </div>
-    </section>
+    </motion.section>
   );
 }

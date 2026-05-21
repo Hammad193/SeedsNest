@@ -1,5 +1,6 @@
 import React from "react";
 import { ShoppingCart } from "lucide-react";
+import { motion } from "framer-motion";
 
 const products = [
   {
@@ -121,8 +122,14 @@ const FeaturedProducts = () => {
     <section className="bg-white py-20">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
 
-        {/* Heading */}
-        <div className="text-center mb-14">
+        {/* Heading Animation */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-14"
+        >
           <p className="text-green-600 font-semibold uppercase tracking-[4px]">
             Best Products
           </p>
@@ -135,15 +142,20 @@ const FeaturedProducts = () => {
             Discover our premium collection of seeds, plants,
             gardening essentials, and organic care products.
           </p>
-        </div>
+        </motion.div>
 
         {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
 
           {products.map((product, index) => (
-            <div
+            <motion.div
               key={index}
-              className="group bg-white rounded-[30px] overflow-hidden border border-gray-100 shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-3"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.05 }}
+              whileHover={{ y: -8 }}
+              className="group bg-white rounded-[30px] overflow-hidden border border-gray-100 shadow-md hover:shadow-2xl transition-all duration-500"
             >
 
               {/* Product Image */}
@@ -175,29 +187,34 @@ const FeaturedProducts = () => {
                     {product.price}
                   </p>
 
-                  <button className="w-12 h-12 rounded-full bg-green-100 text-green-600 flex items-center justify-center hover:bg-green-600 hover:text-white transition-all duration-300 hover:scale-110">
+                  <motion.button
+                    whileTap={{ scale: 0.9 }}
+                    className="w-12 h-12 rounded-full bg-green-100 text-green-600 flex items-center justify-center hover:bg-green-600 hover:text-white transition-all duration-300"
+                  >
                     <ShoppingCart className="w-5 h-5" />
-                  </button>
+                  </motion.button>
 
                 </div>
 
               </div>
-            </div>
+            </motion.div>
           ))}
 
         </div>
-        {/* View All Products Button */}
-<div className="flex justify-center mt-14">
-  <button className="group bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-full font-semibold text-lg shadow-lg transition-all duration-300 hover:scale-105 flex items-center gap-3">
-    
-    View All Products
 
-    <span className="group-hover:translate-x-1 transition duration-300">
-      →
-    </span>
+        {/* Button Animation */}
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          className="flex justify-center mt-14"
+        >
+          <button className="group bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-full font-semibold text-lg shadow-lg transition-all duration-300 flex items-center gap-3">
+            View All Products
+            <span className="group-hover:translate-x-1 transition duration-300">
+              →
+            </span>
+          </button>
+        </motion.div>
 
-  </button>
-</div>
       </div>
     </section>
   );

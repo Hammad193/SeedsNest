@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import React from "react";
 import { ArrowRight, Leaf, ShieldCheck, Truck } from "lucide-react";
+import { motion } from "framer-motion";
 
 const HeroSection = () => {
   return (
@@ -14,32 +15,57 @@ const HeroSection = () => {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
 
           {/* LEFT CONTENT */}
-          <div className="space-y-8">
+          <motion.div
+            initial={{ opacity: 0, x: -60 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="space-y-8"
+          >
 
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-5 py-2 rounded-full text-sm font-semibold animate-pulse">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2 }}
+              className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-5 py-2 rounded-full text-sm font-semibold animate-pulse"
+            >
               <Leaf className="w-4 h-4" />
               Trusted Organic Seed Store
-            </div>
+            </motion.div>
 
             {/* Heading */}
             <div>
-              <h1 className="text-5xl lg:text-7xl font-extrabold leading-tight text-gray-900">
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="text-5xl lg:text-7xl font-extrabold leading-tight text-gray-900"
+              >
                 Grow Your
                 <span className="text-green-600 block">
                   Dream Garden
                 </span>
-              </h1>
+              </motion.h1>
 
-              <p className="mt-6 text-lg text-gray-600 leading-relaxed max-w-xl">
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+                className="mt-6 text-lg text-gray-600 leading-relaxed max-w-xl"
+              >
                 Premium quality organic seeds for vegetables, flowers, herbs,
                 and indoor plants. Start planting naturally with healthy and
                 high-germination seeds.
-              </p>
+              </motion.p>
             </div>
 
             {/* Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="flex flex-col sm:flex-row gap-4"
+            >
               <button className="group bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full font-semibold flex items-center justify-center gap-2 transition-all duration-300 hover:scale-105 shadow-lg">
                 Shop Seeds
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition duration-300" />
@@ -48,12 +74,17 @@ const HeroSection = () => {
               <button className="border-2 border-gray-200 hover:border-green-600 hover:text-green-600 text-gray-700 px-8 py-4 rounded-full font-semibold transition-all duration-300">
                 Explore Categories
               </button>
-            </div>
+            </motion.div>
 
             {/* Features */}
-            <div className="grid sm:grid-cols-3 gap-5 pt-6">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="grid sm:grid-cols-3 gap-5 pt-6"
+            >
 
-              <div className="bg-white border border-gray-100 shadow-md rounded-2xl p-5 hover:shadow-xl transition duration-300">
+              <motion.div whileHover={{ y: -5 }} className="bg-white border border-gray-100 shadow-md rounded-2xl p-5 hover:shadow-xl transition duration-300">
                 <Truck className="text-green-600 w-8 h-8 mb-3" />
                 <h3 className="font-bold text-gray-800">
                   Fast Delivery
@@ -61,9 +92,9 @@ const HeroSection = () => {
                 <p className="text-sm text-gray-500 mt-1">
                   Quick nationwide shipping.
                 </p>
-              </div>
+              </motion.div>
 
-              <div className="bg-white border border-gray-100 shadow-md rounded-2xl p-5 hover:shadow-xl transition duration-300">
+              <motion.div whileHover={{ y: -5 }} className="bg-white border border-gray-100 shadow-md rounded-2xl p-5 hover:shadow-xl transition duration-300">
                 <Leaf className="text-green-600 w-8 h-8 mb-3" />
                 <h3 className="font-bold text-gray-800">
                   Organic Seeds
@@ -71,9 +102,9 @@ const HeroSection = () => {
                 <p className="text-sm text-gray-500 mt-1">
                   100% natural quality seeds.
                 </p>
-              </div>
+              </motion.div>
 
-              <div className="bg-white border border-gray-100 shadow-md rounded-2xl p-5 hover:shadow-xl transition duration-300">
+              <motion.div whileHover={{ y: -5 }} className="bg-white border border-gray-100 shadow-md rounded-2xl p-5 hover:shadow-xl transition duration-300">
                 <ShieldCheck className="text-green-600 w-8 h-8 mb-3" />
                 <h3 className="font-bold text-gray-800">
                   Trusted Quality
@@ -81,16 +112,20 @@ const HeroSection = () => {
                 <p className="text-sm text-gray-500 mt-1">
                   High germination guarantee.
                 </p>
-              </div>
+              </motion.div>
 
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* RIGHT IMAGE SECTION */}
-          <div className="relative flex justify-center">
+          <motion.div
+            initial={{ opacity: 0, x: 60 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="relative flex justify-center"
+          >
 
-            {/* Main Image */}
-            <div className="relative">
+            <motion.div whileHover={{ scale: 1.02 }} className="relative">
               <img
                 src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?q=80&w=1200&auto=format&fit=crop"
                 alt="Seeds"
@@ -98,27 +133,37 @@ const HeroSection = () => {
               />
 
               {/* Floating Card 1 */}
-              <div className="absolute -top-6 -left-6 bg-white shadow-xl rounded-2xl p-4 animate-bounce">
+              <motion.div
+                animate={{ y: [0, -10, 0] }}
+                transition={{ repeat: Infinity, duration: 3 }}
+                className="absolute -top-6 -left-6 bg-white shadow-xl rounded-2xl p-4"
+              >
                 <p className="text-sm text-gray-500">
                   🌱 Germination Rate
                 </p>
                 <h3 className="text-2xl font-bold text-green-600">
                   98%
                 </h3>
-              </div>
+              </motion.div>
 
               {/* Floating Card 2 */}
-              <div className="absolute -bottom-6 -right-6 bg-white shadow-xl rounded-2xl p-4 animate-pulse">
+              <motion.div
+                animate={{ y: [0, 10, 0] }}
+                transition={{ repeat: Infinity, duration: 4 }}
+                className="absolute -bottom-6 -right-6 bg-white shadow-xl rounded-2xl p-4"
+              >
                 <p className="text-sm text-gray-500">
                   🚚 Free Shipping
                 </p>
                 <h3 className="text-xl font-bold text-gray-800">
                   Orders Above Rs.3000
                 </h3>
-              </div>
-            </div>
+              </motion.div>
 
-          </div>
+            </motion.div>
+
+          </motion.div>
+
         </div>
       </div>
     </section>

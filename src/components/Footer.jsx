@@ -107,7 +107,7 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="mt-12 border-t border-gray-700 pt-6 text-center text-gray-400 text-sm">
-        © {new Date().getFullYear()} Your Nursery Website. All rights reserved.
+        © {new Date().getFullYear()} Your Website Developed by syedZada Hammad | Your Nursery Website. All rights reserved.
       </div>
 
     </footer>

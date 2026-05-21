@@ -28,13 +28,24 @@ export default function Cart() {
 
   return (
     <section className="py-20 px-6 md:px-20 bg-gray-50 m-20">
+
       <div className="lg:col-span-2">
+
         {cart.length === 0 ? (
-          <p className="text-gray-500">Cart is empty</p>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-gray-500"
+          >
+            Cart is empty
+          </motion.p>
         ) : (
-          cart.map((item) => (
-            <div
+          cart.map((item, index) => (
+            <motion.div
               key={item.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.05 }}
               className="flex justify-between items-center border p-4 mb-3 rounded-lg"
             >
               <div>
@@ -49,13 +60,20 @@ export default function Cart() {
               >
                 Remove
               </button>
-            </div>
+            </motion.div>
           ))
         )}
 
         {/* RIGHT SIDE */}
-        <motion.div className="bg-white p-6 rounded-xl shadow-md">
-          <h3 className="text-xl font-semibold mb-5">Order Summary</h3>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.4 }}
+          className="bg-white p-6 rounded-xl shadow-md"
+        >
+          <h3 className="text-xl font-semibold mb-5">
+            Order Summary
+          </h3>
 
           <div className="flex justify-between">
             <span>Total</span>
@@ -78,6 +96,7 @@ export default function Cart() {
             </button>
           </div>
         </motion.div>
+
       </div>
     </section>
   );

@@ -6,14 +6,19 @@ export default function Checkout() {
     <section className="py-20 px-6 md:px-20 bg-gray-50 m-20">
 
       {/* Heading */}
-      <div className="text-center mb-12">
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="text-center mb-12"
+      >
         <h2 className="text-3xl md:text-4xl font-bold text-green-800">
           Checkout
         </h2>
         <p className="text-gray-600 mt-2">
           Complete your order securely
         </p>
-      </div>
+      </motion.div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
 
@@ -76,39 +81,63 @@ export default function Checkout() {
             Order Summary
           </h3>
 
-          {/* Items */}
           <div className="space-y-4 text-sm text-gray-700">
 
-            <div className="flex justify-between">
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1 }}
+              className="flex justify-between"
+            >
               <span>Self-Watering Plant</span>
               <span>$20.00</span>
-            </div>
+            </motion.div>
 
-            <div className="flex justify-between">
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2 }}
+              className="flex justify-between"
+            >
               <span>Garden Pot</span>
               <span>$15.00</span>
-            </div>
+            </motion.div>
 
-            <div className="flex justify-between">
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3 }}
+              className="flex justify-between"
+            >
               <span>Organic Compost</span>
               <span>$10.00</span>
-            </div>
+            </motion.div>
 
             <hr />
 
-            <div className="flex justify-between font-semibold text-lg text-green-700">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.4 }}
+              className="flex justify-between font-semibold text-lg text-green-700"
+            >
               <span>Total</span>
               <span>$45.00</span>
-            </div>
+            </motion.div>
 
           </div>
 
           {/* Button */}
-          <Link to="/payment">
-            <button className="mt-8 w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl transition-all font-semibold cursor-pointer">
-              Place Order
-            </button>
-          </Link>
+          <motion.div
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+          >
+            <Link to="/payment">
+              <button className="mt-8 w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl transition-all font-semibold cursor-pointer">
+                Place Order
+              </button>
+            </Link>
+          </motion.div>
 
           <p className="text-xs text-gray-500 mt-4 text-center">
             Secure checkout powered by your store

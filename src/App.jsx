@@ -12,9 +12,12 @@ import Account from "./components/Account";
 import Shop from "./components/Shop";
 import Checkout from "./components/Checkout";
 import Payment from "./components/Payment";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 function App() {
-  return (
+  return (<>
+    <Navbar />
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/categories" element={<Categories />} />
@@ -31,6 +34,8 @@ function App() {
       <Route path="/category/:name" element={<CategoryPage />} />
       <Route path="/product/:id" element={<ProductDetail />} />
     </Routes>
+    <Footer />
+    </>
   );
 }
 
