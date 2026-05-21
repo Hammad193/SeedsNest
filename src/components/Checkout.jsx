@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export default function Checkout() {
   return (
@@ -103,9 +104,11 @@ export default function Checkout() {
           </div>
 
           {/* Button */}
-          <button className="mt-8 w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl transition-all font-semibold">
-            Place Order
-          </button>
+          <Link to="/payment">
+            <button className="mt-8 w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl transition-all font-semibold cursor-pointer">
+              Place Order
+            </button>
+          </Link>
 
           <p className="text-xs text-gray-500 mt-4 text-center">
             Secure checkout powered by your store

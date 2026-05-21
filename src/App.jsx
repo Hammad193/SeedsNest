@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-
+import { motion } from "framer-motion";
 import Home from "./pages/Home";
 import Categories from "./pages/Categories";
 import About from "./pages/About";
@@ -11,6 +11,7 @@ import Cart from "./components/Cart";
 import Account from "./components/Account";
 import Shop from "./components/Shop";
 import Checkout from "./components/Checkout";
+import Payment from "./components/Payment";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
       <Route path="/account" element={<Account />} />
       <Route path="/shop" element={<Shop />} />
       <Route path="/checkout" element={<Checkout />} />
+      <Route path="/payment" element={<Payment />} />
 
       {/* DYNAMIC ROUTES */}
       <Route path="/category/:name" element={<CategoryPage />} />

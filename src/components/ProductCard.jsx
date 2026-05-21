@@ -1,86 +1,64 @@
-import React, { useState } from "react";
-import { useCart } from "../context/CartContext";
+import React from "react";
+import { ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const ProductCard = ({ product }) => {
-  const { addToCart } = useCart();
-
-  // Sizes array
-  const sizes = product.sizes || [];
-
-  // Default selected size
-  const [selectedSize, setSelectedSize] = useState(
-    sizes.length > 0 ? sizes[0] : null
-  );
-
-  // Current price according to selected size
-  const currentPrice = selectedSize
-    ? selectedSize.price
-    : product.price;
-
-  const handleAddToCart = () => {
-    addToCart({
-      ...product,
-      selectedSize: selectedSize?.size,
-      price: currentPrice,
-    });
-  };
-
+const ProductCard = ({ product, onAddToCart }) => {
   return (
-    <div className="border p-4 rounded-2xl shadow hover:shadow-xl transition-all duration-300 bg-white flex flex-col justify-between">
+    <div className="group w-full bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
 
-  {/* PRODUCT IMAGE */}
-  <Link to={`/product/${product.id}`}>
-    <img
-      src={product.image}
-      alt={product.name}
-      className="h-48 w-full object-cover rounded-xl"
-    />
-  </Link>
+      {/* IMAGE */}
+      <div className="relative overflow-hidden">
 
-  {/* PRODUCT INFO */}
-  <div className="mt-4">
-    <Link to={`/product/${product.id}`}>
-      <h2 className="font-bold text-lg text-gray-800">
-        {product.name}
-      </h2>
-    </Link>
+        {/* SALE BADGE */}
+        {product.sale && (
+          <div className="absolute top-3 left-3 bg-green-600 text-white px-3 py-1 rounded-full text-xs sm:text-sm font-semibold shadow">
+            {product.sale}
+          </div>
+        )}
 
-    <p className="text-green-700 font-semibold mt-1">
-      Rs {currentPrice}
-    </p>
-  </div>
-
-  {/* SIZE SELECTOR */}
-  {sizes.length > 0 && (
-    <div className="flex justify-end gap-2 mt-4 flex-wrap">
-
-      {sizes.map((item, index) => (
+        {/* CART BUTTON (FIXED) */}
         <button
-          key={index}
-          onClick={() => setSelectedSize(item)}
-          className={`px-3 py-1 rounded-full text-sm border transition-all duration-300 ${
-            selectedSize?.size === item.size
-              ? "bg-green-600 text-white border-green-600"
-              : "bg-white text-gray-700 border-gray-300 hover:border-green-500"
-          }`}
+          onClick={() => onAddToCart(product)}
+          className="absolute top-3 right-3 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-green-100 flex items-center justify-center hover:bg-green-600 transition-all duration-300 active:scale-95"
         >
-          {item.size}
+          <ShoppingCart className="w-4 h-4 sm:w-5 sm:h-5 text-green-600 group-hover:text-white transition" />
         </button>
-      ))}
 
+        {/* IMAGE */}
+        <Link to={`/product/${product.id}`}>
+          <img
+            src={product.image}
+            alt={product.name}
+            className="w-full h-64 sm:h-72 object-cover group-hover:scale-110 transition-transform duration-700"
+          />
+        </Link>
+      </div>
+
+      {/* CONTENT */}
+      <div className="p-4 sm:p-6">
+
+        <Link to={`/product/${product.id}`}>
+          <h3 className="text-base sm:text-xl font-bold text-gray-800 group-hover:text-green-600 transition duration-300 line-clamp-1">
+            {product.name}
+          </h3>
+        </Link>
+
+        <div className="flex items-center justify-between mt-4">
+
+          <p className="text-lg sm:text-2xl font-extrabold text-green-600">
+            {product.price}
+          </p>
+
+          {product.size && (
+            <span className="text-xs sm:text-sm text-gray-500">
+              {product.size}
+            </span>
+          )}
+
+        </div>
+
+      </div>
     </div>
-  )}
-
-  {/* ADD TO CART BUTTON */}
-  <button
-    onClick={handleAddToCart}
-    className="mt-5 bg-green-600 hover:bg-green-700 text-white px-4 py-3 rounded-xl transition-all duration-300 w-full"
-  >
-    Add to Cart
-  </button>
-
-</div>
   );
 };
 

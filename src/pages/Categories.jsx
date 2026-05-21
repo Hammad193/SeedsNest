@@ -31,43 +31,44 @@ const categories = [
   {
     name: "Deals & Gifts",
     image:
-      "https://images.unsplash.com/photo-1513885535751-8b9238bd345a?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1513885535751-8b9238bd345a?q=80&w-1200&auto=format&fit=crop",
   },
 ];
 
 const ShopByCategory = () => {
   return (
-    <section className="bg-[#f8faf8] py-20 m-20">
+    <section className="bg-[#f8faf8] py-16 px-4 sm:px-6 lg:px-10">
 
-        <Link to="/category/$ {category.name}">
-          <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        {/* Section Heading */}
-        <div className="text-center mb-14">
+      <div className="max-w-7xl mx-auto">
+
+        {/* Heading */}
+        <div className="text-center mb-12">
           <p className="text-green-600 font-semibold uppercase tracking-widest">
             Explore Categories
           </p>
 
-          <h2 className="text-4xl lg:text-5xl font-extrabold text-gray-900 mt-3">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mt-3">
             Shop By Category
           </h2>
 
-          <p className="text-gray-600 mt-5 max-w-2xl mx-auto text-lg">
+          <p className="text-gray-600 mt-5 max-w-2xl mx-auto text-base sm:text-lg">
             Discover premium gardening essentials, organic seeds,
             healthy plants, and professional garden care products.
           </p>
         </div>
 
-        {/* Categories Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
 
           {categories.map((category, index) => (
-            <div
+            <Link
               key={index}
-              className="group bg-white rounded-[28px] overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100"
+              to={`/category/${category.name}`}
+              className="group bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100"
             >
 
-              {/* Category Image */}
-              <div className="overflow-hidden h-72">
+              {/* Image */}
+              <div className="overflow-hidden h-56 sm:h-64 lg:h-72">
                 <img
                   src={category.image}
                   alt={category.name}
@@ -75,30 +76,31 @@ const ShopByCategory = () => {
                 />
               </div>
 
-              {/* Category Content */}
-              <div className="p-6 flex items-center justify-between">
+              {/* Content */}
+              <div className="p-5 sm:p-6 flex items-center justify-between">
 
                 <div>
-                  <h3 className="text-2xl font-bold text-gray-800 group-hover:text-green-600 transition duration-300">
+                  <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 group-hover:text-green-600 transition duration-300">
                     {category.name}
                   </h3>
 
-                  <p className="text-gray-500 mt-2 text-sm">
+                  <p className="text-gray-500 mt-1 text-xs sm:text-sm">
                     Explore premium products
                   </p>
                 </div>
 
-                {/* Arrow Button */}
-                <button className="w-12 h-12 rounded-full bg-green-100 text-green-600 flex items-center justify-center group-hover:bg-green-600 group-hover:text-white transition-all duration-300">
-                  <ArrowRight className="w-5 h-5" />
-                </button>
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-green-100 text-green-600 flex items-center justify-center group-hover:bg-green-600 group-hover:text-white transition-all duration-300">
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                </div>
 
               </div>
-            </div>
+
+            </Link>
           ))}
 
         </div>
-      </div></Link>
+
+      </div>
     </section>
   );
 };

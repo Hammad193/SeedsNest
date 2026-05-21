@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
 export default function Cart() {
-   const { cart, removeFromCart, clearCart } = useCart();
+  const { cart, removeFromCart, clearCart } = useCart();
 
   const updateQty = (id, type) => {
     setCart((prev) =>
@@ -49,7 +49,6 @@ export default function Cart() {
               >
                 Remove
               </button>
-              
             </div>
           ))
         )}
@@ -63,18 +62,21 @@ export default function Cart() {
             <span>${total}</span>
           </div>
 
-          <Link
-            to="/checkout"
-            className="mt-6 block text-center bg-green-600 text-white py-3 rounded-xl"
-          >
-            Checkout
-          </Link>
-          <button
-        onClick={clearCart}
-        className="h-full w-full mt-6 block text-center bg-red-500 text-white py-3 rounded-xl"
-      >
-        Clear Cart
-      </button>
+          <div className="mt-6 flex gap-4">
+            <Link
+              to="/checkout"
+              className="flex-1 text-center bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl transition"
+            >
+              Checkout
+            </Link>
+
+            <button
+              onClick={clearCart}
+              className="flex-1 bg-red-500 hover:bg-red-600 text-white py-3 rounded-xl transition cursor-pointer"
+            >
+              Clear Cart
+            </button>
+          </div>
         </motion.div>
       </div>
     </section>

@@ -37,7 +37,7 @@ const categories = [
 
 const ShopByCategory = () => {
   return (
-    <section className="bg-[#f8faf8] py-20 m-20">
+    <section className="bg-[#f8faf8] py-20 m-10">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
 
         {/* Section Heading */}
