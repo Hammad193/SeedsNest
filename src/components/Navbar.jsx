@@ -40,24 +40,24 @@ const Navbar = () => {
 
       {/* NAVBAR */}
       <nav
-        className={`fixed left-0 w-full z-[9999] transition-all duration-300 ease-in-out ${
+        className={`fixed left-0 top-0 w-full z-[9999] transition-all duration-300 ease-in-out ${
           scrolled
-            ? "top-0 bg-white/95 shadow-lg backdrop-blur-md py-4"
-            : "top-0 bg-white py-4"
+            ? "bg-white/95 shadow-lg backdrop-blur-md py-3 sm:py-4"
+            : "bg-white py-3 sm:py-4"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
 
           {/* LOGO */}
           <Link
             to="/"
-            className="flex items-center gap-2 group transition-transform duration-300 hover:scale-105"
+            className="flex items-center gap-2 shrink-0"
           >
-            <div className="bg-green-600 p-2 rounded-full group-hover:rotate-12 transition">
+            <div className="bg-green-600 p-2 rounded-full">
               <Leaf className="text-white w-5 h-5" />
             </div>
 
-            <h1 className="text-xl font-bold">
+            <h1 className="text-lg sm:text-xl font-bold whitespace-nowrap">
               Seed<span className="text-green-600">Nest</span>
             </h1>
           </Link>
@@ -80,7 +80,7 @@ const Navbar = () => {
           {/* RIGHT ICONS */}
           <div className="hidden lg:flex items-center gap-5">
             <Link to="/cart" className="relative">
-              <ShoppingCart className="text-gray-600" />
+              <ShoppingCart className="text-gray-600 w-6 h-6" />
               {cartCount > 0 && (
                 <span className="absolute -top-2 -right-2 bg-green-600 text-white text-xs px-2 rounded-full">
                   {cartCount}
@@ -89,22 +89,21 @@ const Navbar = () => {
             </Link>
 
             <Link to="/account">
-              <User className="text-gray-600 hover:text-green-600 transition" />
+              <User className="text-gray-600 w-6 h-6 hover:text-green-600 transition" />
             </Link>
 
             <Link
               to="/shop"
-              className="bg-green-600 text-white px-5 py-2 rounded-full hover:bg-green-700 transition"
+              className="bg-green-600 text-white px-4 sm:px-5 py-2 rounded-full hover:bg-green-700 transition text-sm sm:text-base"
             >
               Shop Now
             </Link>
           </div>
 
-          {/* MOBILE BUTTON (FIXED 100%) */}
+          {/* MOBILE BUTTON (FIXED SIZE ISSUE) */}
           <button
             type="button"
-            className="lg:hidden w-35
-            h-10 flex items-center justify-center text-gray-900 z-[99999] relative"
+            className="lg:hidden w-10 h-10 flex items-center justify-center text-gray-900 z-[99999]"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle Menu"
           >
@@ -117,11 +116,11 @@ const Navbar = () => {
         <div
           className={`lg:hidden overflow-hidden transition-all duration-500 ease-in-out ${
             isOpen
-              ? "max-h-96 opacity-100 mt-5"
+              ? "max-h-96 opacity-100 mt-3"
               : "max-h-0 opacity-0 pointer-events-none"
           }`}
         >
-          <div className="bg-white shadow-md rounded-xl mx-6 p-5">
+          <div className="bg-white shadow-md rounded-xl mx-4 sm:mx-6 p-5">
 
             <ul className="flex flex-col gap-4">
               {navLinks.map((item, i) => (
@@ -129,7 +128,7 @@ const Navbar = () => {
                   <Link
                     to={item.path}
                     onClick={() => setIsOpen(false)}
-                    className="block text-gray-600 hover:text-green-600 py-1"
+                    className="block text-gray-600 hover:text-green-600 py-2"
                   >
                     {item.name}
                   </Link>
@@ -151,7 +150,7 @@ const Navbar = () => {
                 onClick={() => setIsOpen(false)}
                 className="flex items-center justify-center px-4 border rounded-full relative"
               >
-                <ShoppingCart className="text-gray-600" />
+                <ShoppingCart className="text-gray-600 w-5 h-5" />
                 {cartCount > 0 && (
                   <span className="absolute -top-1 -right-1 bg-green-600 text-white text-xs px-1.5 rounded-full">
                     {cartCount}

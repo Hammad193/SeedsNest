@@ -20,9 +20,9 @@ export default function Contact() {
   };
 
   return (
-    <section className="py-20 px-6 md:px-20 m-20 bg-gray-50">
+    <section className="py-20 px-6 md:px-20 bg-gray-50 pt-24">
 
-      {/* Heading */}
+      {/* HEADING */}
       <motion.div
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -38,12 +38,8 @@ export default function Contact() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
 
-        {/* LEFT INFO BOX */}
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="bg-white p-8 rounded-2xl shadow-md space-y-6"
-        >
+        {/* INFO */}
+        <div className="bg-white p-8 rounded-2xl shadow-md space-y-6">
 
           <div className="flex items-center gap-4">
             <Mail className="text-green-600" />
@@ -57,20 +53,14 @@ export default function Contact() {
 
           <div className="flex items-center gap-4">
             <MapPin className="text-green-600" />
-            <span>Model Town Lahore, Pakistan</span>
+            <span>Lahore, Pakistan</span>
           </div>
 
-          <p className="text-gray-600 pt-4">
-            We usually respond within 24 hours. Feel free to reach out for any queries about plants, seeds, or orders.
-          </p>
+        </div>
 
-        </motion.div>
-
-        {/* RIGHT FORM */}
-        <motion.form
+        {/* FORM */}
+        <form
           onSubmit={handleSubmit}
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
           className="bg-white p-8 rounded-2xl shadow-md space-y-5"
         >
 
@@ -80,7 +70,7 @@ export default function Contact() {
             placeholder="Your Name"
             value={form.name}
             onChange={handleChange}
-            className="w-full border p-3 rounded-lg focus:outline-green-600"
+            className="w-full border p-3 rounded-lg"
             required
           />
 
@@ -90,7 +80,7 @@ export default function Contact() {
             placeholder="Your Email"
             value={form.email}
             onChange={handleChange}
-            className="w-full border p-3 rounded-lg focus:outline-green-600"
+            className="w-full border p-3 rounded-lg"
             required
           />
 
@@ -100,20 +90,21 @@ export default function Contact() {
             value={form.message}
             onChange={handleChange}
             rows="5"
-            className="w-full border p-3 rounded-lg focus:outline-green-600"
+            className="w-full border p-3 rounded-lg"
             required
-          ></textarea>
+          />
 
           <button
             type="submit"
-            className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition-all duration-300 hover:scale-105"
+            className="w-full bg-green-600 text-white py-3 rounded-lg"
           >
             Send Message
           </button>
 
-        </motion.form>
+        </form>
 
       </div>
+
     </section>
   );
 }
