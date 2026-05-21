@@ -14,7 +14,6 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-
       setScrolled(scrollY > 20);
       setShowTopBar(scrollY < 10);
     };
@@ -47,21 +46,20 @@ const Navbar = () => {
 
       {/* NAVBAR */}
       <nav
-        className={`fixed left-0 w-full z-[9999] transition-all duration-300 ease-in-out ${
+        className={`fixed left-0 w-full z-[9999] transition-all duration-300 ${
           scrolled || !showTopBar
-            ? "top-0 bg-white/95 shadow-lg backdrop-blur-md py-3 sm:py-4"
-            : "top-10 bg-white py-3 sm:py-4"
+            ? "top-0 bg-white/95 shadow-lg backdrop-blur-md py-3"
+            : "top-10 bg-white py-3"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
 
           {/* LOGO */}
           <Link to="/" className="flex items-center gap-2">
             <div className="bg-green-600 p-2 rounded-full">
               <Leaf className="text-white w-5 h-5" />
             </div>
-
-            <h1 className="text-lg sm:text-xl font-bold">
+            <h1 className="text-lg font-bold">
               Seed<span className="text-green-600">Nest</span>
             </h1>
           </Link>
@@ -70,17 +68,14 @@ const Navbar = () => {
           <ul className="hidden lg:flex items-center gap-10">
             {navLinks.map((item, i) => (
               <li key={i}>
-                <Link
-                  to={item.path}
-                  className="text-gray-600 font-medium hover:text-green-600 transition"
-                >
+                <Link className="text-gray-600 hover:text-green-600" to={item.path}>
                   {item.name}
                 </Link>
               </li>
             ))}
           </ul>
 
-          {/* RIGHT ICONS */}
+          {/* DESKTOP RIGHT */}
           <div className="hidden lg:flex items-center gap-5">
             <Link to="/cart" className="relative">
               <ShoppingCart className="text-gray-600 w-6 h-6" />
@@ -97,7 +92,7 @@ const Navbar = () => {
 
             <Link
               to="/shop"
-              className="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition"
+              className="bg-green-600 text-white px-4 py-2 rounded-full"
             >
               Shop Now
             </Link>
@@ -105,22 +100,22 @@ const Navbar = () => {
 
           {/* MOBILE BUTTON */}
           <button
-            className="lg:hidden w-10 h-10 flex items-center justify-center"
+            className="lg:hidden w-10 h-10 flex items-center justify-center z-[99999]"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
-
         </div>
 
-        {/* MOBILE MENU */}
+        {/* MOBILE MENU FIXED */}
         <div
           className={`lg:hidden overflow-hidden transition-all duration-300 ${
-            isOpen ? "max-h-96 opacity-100 mt-3" : "max-h-0 opacity-0"
+            isOpen ? "max-h-[500px] opacity-100 mt-3" : "max-h-0 opacity-0"
           }`}
         >
           <div className="bg-white shadow-md rounded-xl mx-4 p-5">
 
+            {/* LINKS */}
             <ul className="flex flex-col gap-4">
               {navLinks.map((item, i) => (
                 <li key={i}>
@@ -134,6 +129,32 @@ const Navbar = () => {
                 </li>
               ))}
             </ul>
+
+            {/* FIXED BUTTONS */}
+            <div className="flex gap-3 mt-5">
+
+              <Link
+                to="/shop"
+                onClick={() => setIsOpen(false)}
+                className="flex-1 bg-green-600 text-white py-3 text-center rounded-full"
+              >
+                Shop Now
+              </Link>
+
+              <Link
+                to="/cart"
+                onClick={() => setIsOpen(false)}
+                className="relative flex items-center justify-center px-4 border rounded-full"
+              >
+                <ShoppingCart className="text-gray-600 w-5 h-5" />
+                {cartCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-green-600 text-white text-xs px-1.5 rounded-full">
+                    {cartCount}
+                  </span>
+                )}
+              </Link>
+
+            </div>
 
           </div>
         </div>
