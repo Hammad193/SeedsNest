@@ -1,12 +1,20 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X, Leaf, ShoppingCart, User } from "lucide-react";
+import {
+  Menu,
+  X,
+  Leaf,
+  ShoppingCart,
+  User,
+  ChevronDown,
+} from "lucide-react";
 import { useCart } from "../context/CartContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showTopBar, setShowTopBar] = useState(true);
+  const [seedDropdown, setSeedDropdown] = useState(false);
 
   const { cart } = useCart();
   const cartCount = cart.reduce((acc, item) => acc + item.qty, 0);
@@ -24,7 +32,14 @@ const Navbar = () => {
 
   const navLinks = [
     { name: "Home", path: "/" },
-    { name: "Seeds", path: "/seeds" },
+    {
+      name: "Seeds",
+      dropdown: [
+        { name: "Flower Category", path: "/seeds/flowers" },
+        { name: "Vegetable Category", path: "/seeds/vegetables" },
+        { name: "Fruits Category", path: "/seeds/fruits" },
+      ],
+    },
     { name: "Categories", path: "/categories" },
     { name: "About", path: "/about" },
     { name: "Contact", path: "/contact" },
@@ -33,12 +48,13 @@ const Navbar = () => {
   return (
     <>
       {/* MARQUEE */}
-      <div className="relative w-full bg-green-600 text-white overflow-hidden whitespace-nowrap py-2 z-40">
-        <div className="flex w-max">
-          <div className="flex gap-10 px-10 text-sm font-medium">
+      <div className="relative w-full bg-green-600 text-white overflow-hidden py-2 z-40">
+        <div className="flex w-max animate-marquee">
+          <div className="flex gap-10 px-10 text-sm font-medium whitespace-nowrap">
             ✨ Lahore Offer: 20% OFF on Plants | 🎁 LHR20 | 📦 Advance Payment | 🚚 COD Available
           </div>
-          <div className="flex gap-10 px-10 text-sm font-medium">
+
+          <div className="flex gap-10 px-10 text-sm font-medium whitespace-nowrap">
             ✨ Lahore Offer: 20% OFF on Plants | 🎁 LHR20 | 📦 Advance Payment | 🚚 COD Available
           </div>
         </div>
@@ -53,7 +69,7 @@ const Navbar = () => {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
-
+          
           {/* LOGO */}
           <Link to="/" className="flex items-center gap-2">
             <div className="bg-green-600 p-2 rounded-full">
@@ -67,15 +83,58 @@ const Navbar = () => {
           {/* DESKTOP MENU */}
           <ul className="hidden lg:flex items-center gap-10">
             {navLinks.map((item, i) => (
-              <li key={i}>
-                <Link className="text-gray-600 hover:text-green-600" to={item.path}>
-                  {item.name}
-                </Link>
+              <li
+                key={i}
+                className="relative"
+                onMouseEnter={() => item.dropdown && setSeedDropdown(true)}
+                onMouseLeave={() => item.dropdown && setSeedDropdown(false)}
+              >
+                {!item.dropdown ? (
+                  <Link
+                    to={item.path}
+                    className="text-gray-600 hover:text-green-600 transition"
+                  >
+                    {item.name}
+                  </Link>
+                ) : (
+                  <>
+                    <div className="flex items-center gap-1 cursor-pointer text-gray-600 hover:text-green-600 transition font-medium">
+                      <Link to={item.path}>{item.name}</Link>
+                      <ChevronDown
+                        size={18}
+                        className={`transition duration-300 ${
+                          seedDropdown ? "rotate-180" : ""
+                        }`}
+                      />
+                    </div>
+
+                    {/* DROPDOWN */}
+                    <div
+                      className={`absolute left-0 top-10 w-64 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden transition-all duration-300 ${
+                        seedDropdown
+                          ? "opacity-100 visible translate-y-0"
+                          : "opacity-0 invisible -translate-y-3"
+                      }`}
+                    >
+                      <div className="p-3">
+                        {item.dropdown.map((dropItem, index) => (
+                          <Link
+                            key={index}
+                            to={dropItem.path}
+                            className="block px-4 py-3 rounded-xl text-gray-600 hover:bg-green-50 hover:text-green-600 transition-all duration-300"
+                          >
+                            {dropItem.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                )}
               </li>
             ))}
           </ul>
 
-          {/* DESKTOP RIGHT */}
+          {/* RIGHT SIDE */}
           <div className="hidden lg:flex items-center gap-5">
             <Link to="/cart" className="relative">
               <ShoppingCart className="text-gray-600 w-6 h-6" />
@@ -100,39 +159,82 @@ const Navbar = () => {
 
           {/* MOBILE BUTTON */}
           <button
-            className="lg:hidden w-10 h-10 flex items-center justify-center z-[99999]"
+            className="lg:hidden w-10 h-10 flex items-center justify-center z-10000"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
 
-        {/* MOBILE MENU FIXED */}
+        {/* MOBILE MENU */}
         <div
           className={`lg:hidden overflow-hidden transition-all duration-300 ${
-            isOpen ? "max-h-[500px] opacity-100 mt-3" : "max-h-0 opacity-0"
+            isOpen ? "max-h-175 opacity-100 mt-3" : "max-h-0 opacity-0"
           }`}
         >
           <div className="bg-white shadow-md rounded-xl mx-4 p-5">
-
-            {/* LINKS */}
-            <ul className="flex flex-col gap-4">
+            <ul className="flex flex-col gap-2">
               {navLinks.map((item, i) => (
                 <li key={i}>
-                  <Link
-                    to={item.path}
-                    onClick={() => setIsOpen(false)}
-                    className="block text-gray-600 hover:text-green-600 py-2"
-                  >
-                    {item.name}
-                  </Link>
+                  {!item.dropdown ? (
+                    <Link
+                      to={item.path}
+                      onClick={() => setIsOpen(false)}
+                      className="block text-gray-600 hover:text-green-600 py-2"
+                    >
+                      {item.name}
+                    </Link>
+                  ) : (
+                    <>
+                      <div className="flex items-center justify-between py-2 text-gray-700 font-medium">
+                        <Link
+                          to={item.path}
+                          onClick={() => setIsOpen(false)}
+                        >
+                          {item.name}
+                        </Link>
+
+                        <button
+                          onClick={() => setSeedDropdown(!seedDropdown)}
+                        >
+                          <ChevronDown
+                            size={18}
+                            className={`transition duration-300 ${
+                              seedDropdown ? "rotate-180" : ""
+                            }`}
+                          />
+                        </button>
+                      </div>
+
+                      {/* MOBILE DROPDOWN */}
+                      <div
+                        className={`overflow-hidden transition-all duration-300 ${
+                          seedDropdown
+                            ? "max-h-60 opacity-100"
+                            : "max-h-0 opacity-0"
+                        }`}
+                      >
+                        <div className="ml-4 mt-2 flex flex-col gap-2 border-l-2 border-green-100 pl-4">
+                          {item.dropdown.map((dropItem, index) => (
+                            <Link
+                              key={index}
+                              to={dropItem.path}
+                              onClick={() => setIsOpen(false)}
+                              className="text-gray-500 hover:text-green-600 py-1"
+                            >
+                              {dropItem.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </li>
               ))}
             </ul>
 
-            {/* FIXED BUTTONS */}
+            {/* MOBILE ACTIONS */}
             <div className="flex gap-3 mt-5">
-
               <Link
                 to="/shop"
                 onClick={() => setIsOpen(false)}
@@ -153,9 +255,7 @@ const Navbar = () => {
                   </span>
                 )}
               </Link>
-
             </div>
-
           </div>
         </div>
       </nav>

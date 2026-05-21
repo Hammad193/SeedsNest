@@ -1,6 +1,6 @@
 const products = [
   {
-    id: 1,
+    id: 28,
     name: "Wheat Seeds",
     category: "Seeds",
     image: "/images/wheat.jpg",
@@ -13,7 +13,7 @@ const products = [
     ],
   },
   {
-    id: 2,
+    id: 29,
     name: "Rice Seeds",
     category: "Seeds",
     image:
@@ -28,7 +28,7 @@ const products = [
   },
 
   {
-    id: 3,
+    id: 30,
     name: "Corn Seeds",
     category: "Seeds",
     image: "https://bonnieplants.com/cdn/shop/articles/BONNIE-PLANTS_corn-iStock-857670630-2400px_1ce4b5df-20b7-433c-acde-8703235c66be.jpg?v=1642542000&width=1000",
@@ -42,7 +42,7 @@ const products = [
   },
 
   {
-    id: 4,
+    id: 31,
     name: "Tomato Seeds",
     category: "Seeds",
     image:
@@ -57,7 +57,7 @@ const products = [
   },
 
   {
-    id: 5,
+    id: 32,
     name: "LadyFinger Seeds",
     category: "Seeds",
     image:
@@ -72,7 +72,7 @@ const products = [
   },
 
   {
-    id: 6,
+    id: 33,
     name: "Pumpkin Seeds",
     category: "Seeds",
     image:
@@ -86,7 +86,7 @@ const products = [
     ],
   },
   {
-    id: 7,
+    id: 34,
     name: "Wheat Seeds",
     category: "Seeds",
     image: "/images/wheat.jpg",
@@ -100,7 +100,7 @@ const products = [
   },
 
   {
-    id: 8,
+    id: 35,
     name: "Rice Seeds",
     category: "Seeds",
     image:
@@ -115,7 +115,7 @@ const products = [
   },
 
   {
-    id: 9,
+    id: 36,
     name: "Corn Seeds",
     category: "Seeds",
     image: "https://bonnieplants.com/cdn/shop/articles/BONNIE-PLANTS_corn-iStock-857670630-2400px_1ce4b5df-20b7-433c-acde-8703235c66be.jpg?v=1642542000&width=1000",
@@ -129,7 +129,7 @@ const products = [
   },
 
   {
-    id: 10,
+    id: 37,
     name: "Tomato Seeds",
     category: "Seeds",
     image:
@@ -144,7 +144,7 @@ const products = [
   },
 
   {
-    id: 11,
+    id: 38,
     name: "LadyFinger Seeds",
     category: "Seeds",
     image:
@@ -159,7 +159,7 @@ const products = [
   },
 
   {
-    id: 12,
+    id: 40,
     name: "Pumpkin Seeds",
     category: "Seeds",
     image:

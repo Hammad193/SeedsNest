@@ -12,6 +12,9 @@ import Account from "./components/Account";
 import Shop from "./components/Shop";
 import Checkout from "./components/Checkout";
 import Payment from "./components/Payment";
+import FlowerCategory from "./pages/FlowerCategory";
+import VegetableCategory from "./pages/VegetableCategory";
+import FruitsCategory from "./pages/FruitsCategory";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
@@ -29,6 +32,9 @@ function App() {
       <Route path="/shop" element={<Shop />} />
       <Route path="/checkout" element={<Checkout />} />
       <Route path="/payment" element={<Payment />} />
+      <Route path="/seeds/flowers" element={<FlowerCategory />} />
+      <Route path="/seeds/vegetables" element={<VegetableCategory />} />
+      <Route path="/seeds/fruits" element={<FruitsCategory />} />
 
       {/* DYNAMIC ROUTES */}
       <Route path="/category/:name" element={<CategoryPage />} />

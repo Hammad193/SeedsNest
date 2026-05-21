@@ -44,7 +44,7 @@ const SelfWateringSection = () => {
             </p>
 
             {/* Button */}
-            <button className="mt-8 bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105 shadow-lg">
+            <button className="mt-8 bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105 shadow-lg cursor-pointer">
               SHOP SELF-WATERING PLANTS
             </button>
 

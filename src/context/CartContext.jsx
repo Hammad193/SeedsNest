@@ -16,20 +16,20 @@ export const CartProvider = ({ children }) => {
   }, [cart]);
 
   const addToCart = (product) => {
-    setCart((prev) => {
-      const exists = prev.find((item) => item.id === product.id);
+  setCart((prevCart) => {
+    const existing = prevCart.find((item) => item.id === product.id);
 
-      if (exists) {
-        return prev.map((item) =>
-          item.id === product.id
-            ? { ...item, qty: item.qty + 1 }
-            : item
-        );
-      }
+    if (existing) {
+      return prevCart.map((item) =>
+        item.id === product.id
+          ? { ...item, qty: item.qty + product.qty }
+          : item
+      );
+    }
 
-      return [...prev, { ...product, qty: 1 }];
-    });
-  };
+    return [...prevCart, product];
+  });
+};
 
   const removeFromCart = (id) => {
     setCart((prev) => prev.filter((item) => item.id !== id));

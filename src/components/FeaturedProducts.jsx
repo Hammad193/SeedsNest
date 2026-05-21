@@ -164,7 +164,7 @@ const FeaturedProducts = () => {
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-700"
+                  className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-700 cursor-pointer"
                 />
 
                 {/* Sale Badge */}
@@ -207,7 +207,7 @@ const FeaturedProducts = () => {
           whileHover={{ scale: 1.05 }}
           className="flex justify-center mt-14"
         >
-          <button className="group bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-full font-semibold text-lg shadow-lg transition-all duration-300 flex items-center gap-3">
+          <button className="group bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-full font-semibold text-lg shadow-lg transition-all duration-300 flex items-center gap-3 cursor-pointer">
             View All Products
             <span className="group-hover:translate-x-1 transition duration-300">
               →

@@ -35,15 +35,37 @@ export default function Cart() {
 
                 {/* ITEM INFO */}
                 <div>
-                  <h2 className="font-semibold text-gray-800">{item.name}</h2>
-                  <p className="text-gray-600">Price: ${item.price}</p>
-                  <p className="text-gray-600">Qty: {item.qty}</p>
+                  <h2 className="font-semibold text-gray-800 text-lg">
+                    {item.name}
+                  </h2>
+
+
+
+                  {/* ✅ NEW: SIZE */}
+                  {item.size && (
+                    <p className="text-gray-600">
+                      Size: {item.size}
+                    </p>
+                  )}
+
+                  {/* ✅ NEW: WEIGHT */}
+                  {item.weight && (
+                    <p className="text-gray-600">
+                      Weight: {item.weight}
+                    </p>
+                  )}
+                  <p className="text-gray-600">
+                    Price: Rs {item.price}
+                  </p>
+                  <p className="text-gray-600 text-lg font-semibold">
+                    Qty: {item.qty}
+                  </p>
                 </div>
 
                 {/* REMOVE */}
                 <button
                   onClick={() => removeFromCart(item.id)}
-                  className="text-red-500 mt-3 sm:mt-0"
+                  className="text-green-500 mt-3 sm:mt-0 cursor-pointer hover:text-red-700 transition"
                 >
                   Remove
                 </button>
@@ -67,7 +89,7 @@ export default function Cart() {
 
           <div className="flex justify-between text-gray-700">
             <span>Total</span>
-            <span>${total}</span>
+            <span>Rs {total}</span>
           </div>
 
           <div className="mt-6 flex flex-col gap-3">

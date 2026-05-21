@@ -40,7 +40,15 @@ const Shop = () => {
           >
             <ProductCard
               product={product}
-              onAddToCart={addToCart}
+              onAddToCart={(item) =>
+                addToCart({
+                  ...item,
+                  qty: 1,
+                  size: item?.sizes?.[0]?.size || "Small",
+                  price: item?.sizes?.[0]?.price || item.price,
+                  weight: item?.sizes?.[0]?.weight || item.weight,
+                })
+              }
             />
           </motion.div>
         ))}

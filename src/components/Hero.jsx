@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const HeroSection = () => {
   return (
-    <section className="relative overflow-hidden bg-white pt-32 pb-20">
+    <section className="relative w-full overflow-hidden bg-white pt-32 pb-20">
       
       {/* Background Blur Effects */}
       <div className="absolute top-10 left-10 w-72 h-72 bg-green-100 rounded-full blur-3xl opacity-40"></div>
@@ -66,14 +66,18 @@ const HeroSection = () => {
               transition={{ delay: 0.5 }}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <button className="group bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full font-semibold flex items-center justify-center gap-2 transition-all duration-300 hover:scale-105 shadow-lg">
-                Shop Seeds
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition duration-300" />
-              </button>
+              <Link to="/seeds">
+                <button className="group bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full font-semibold flex items-center justify-center gap-2 transition-all duration-300 hover:scale-105 shadow-lg cursor-pointer">
+                  Shop Seeds
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition duration-300" />
+                </button>
+              </Link>
 
-              <button className="border-2 border-gray-200 hover:border-green-600 hover:text-green-600 text-gray-700 px-8 py-4 rounded-full font-semibold transition-all duration-300">
-                Explore Categories
-              </button>
+              <Link to="/categories">
+                <button className="border-2 border-gray-200 hover:border-green-600 hover:text-green-600 text-gray-700 px-8 py-4 rounded-full font-semibold transition-all duration-300 cursor-pointer">
+                  Explore Categories
+                </button>
+              </Link>
             </motion.div>
 
             {/* Features */}
