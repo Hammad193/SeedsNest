@@ -6,15 +6,25 @@ import { useCart } from "../context/CartContext";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showTopBar, setShowTopBar] = useState(true);
+
   const { cart } = useCart();
 
   const cartCount = cart.reduce((acc, item) => acc + item.qty, 0);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const handleScroll = () => {
+    const scrollY = window.scrollY;
+
+    setScrolled(scrollY > 20);
+
+    // top bar hide when scrolling down
+    setShowTopBar(scrollY < 10);
+  };
+
+  window.addEventListener("scroll", handleScroll);
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
 
   const navLinks = [
     { name: "Home", path: "/" },
@@ -40,12 +50,12 @@ const Navbar = () => {
 
       {/* NAVBAR */}
       <nav
-        className={`fixed left-0 top-0 w-full z-[9999] transition-all duration-300 ease-in-out ${
-          scrolled
-            ? "bg-white/95 shadow-lg backdrop-blur-md py-3 sm:py-4"
-            : "bg-white py-3 sm:py-4"
-        }`}
-      >
+  className={`fixed left-0 w-full z-[9999] transition-all duration-300 ease-in-out ${
+    scrolled || !showTopBar
+      ? "top-0 bg-white/95 shadow-lg backdrop-blur-md py-3 sm:py-4"
+      : "top-10 bg-white py-3 sm:py-4"
+  }`}
+>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
 
           {/* LOGO */}
