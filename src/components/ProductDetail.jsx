@@ -143,10 +143,11 @@ const ProductDetail = () => {
         {/* ======================================================= */}
         {/* UPPER SECTION: IMAGE LAYOUT & DETAILED INFO             */}
         {/* ======================================================= */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start bg-white p-8 rounded-3xl shadow-sm">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-stretch bg-white p-8 rounded-3xl shadow-sm">
           
-          {/* LEFT: RESPONSIVE THUMBNAILS & ACTIVE IMAGE DISPLAY */}
-          <div className="flex flex-col-reverse md:flex-row gap-4 w-full">
+          {/* LEFT: FULL HEIGHT IMAGE & RESPONSIVE THUMBNAILS */}
+          <div className="flex flex-col-reverse md:flex-row gap-4 w-full h-full min-h-full">
+            
             {/* Vertical/Horizontal Thumbnails */}
             <div className="flex flex-row md:flex-col gap-3 flex-shrink-0 overflow-x-auto md:overflow-y-auto max-w-full pb-2 md:pb-0" style={{ scrollbarWidth: "none" }}>
               {images.map((img, i) => (
@@ -162,117 +163,121 @@ const ProductDetail = () => {
               ))}
             </div>
 
-            {/* Main Image container */}
-            <div className="flex-1 bg-gray-50 overflow-hidden min-h-[300px] max-h-[500px] flex items-center justify-center border border-gray-100 rounded-2xl">
+            {/* Main Image Container: Mobile per 60vh Height aur Desktop per Parent k mutabiq full stretch */}
+            <div className="flex-1 bg-gray-50 overflow-hidden w-full h-[60vh] md:h-full min-h-[400px] md:min-h-full flex items-center justify-center border border-gray-100 rounded-2xl relative">
               {activeImg && (
                 <img
                   src={activeImg}
                   alt={product.name}
-                  className="w-full h-full object-cover transition duration-500 hover:scale-105"
+                  className="absolute inset-0 w-full h-full object-cover transition duration-500 hover:scale-105"
                 />
               )}
             </div>
           </div>
 
           {/* RIGHT: CLEAN RETAIL LAYOUT WITH FUNCTIONAL SIZES */}
-          <div className="flex flex-col">
-            {/* Breadcrumb Navigation */}
-            <div className="text-[11px] uppercase tracking-wider text-gray-500 font-semibold mb-3 flex flex-wrap items-center gap-1">
-              <span className="text-green-600 hover:underline cursor-pointer">Home</span> / 
-              <span className="text-green-600 hover:underline cursor-pointer">Shop</span> / 
-              <span className="text-green-600 hover:underline cursor-pointer">Seeds</span> / 
-              <span className="text-green-600 hover:underline cursor-pointer">Vegetable Seeds</span> / 
-              <span className="text-gray-800 font-bold">{product.name}</span>
-            </div>
+          <div className="flex flex-col justify-between h-full">
+            <div>
+              {/* Breadcrumb Navigation */}
+              <div className="text-[11px] uppercase tracking-wider text-gray-500 font-semibold mb-3 flex flex-wrap items-center gap-1">
+                <span className="text-green-600 hover:underline cursor-pointer">Home</span> / 
+                <span className="text-green-600 hover:underline cursor-pointer">Shop</span> / 
+                <span className="text-green-600 hover:underline cursor-pointer">Seeds</span> / 
+                <span className="text-green-600 hover:underline cursor-pointer">Vegetable Seeds</span> / 
+                <span className="text-gray-800 font-bold">{product.name}</span>
+              </div>
 
-            {/* Product Title */}
-            <h1 className="text-3xl font-extrabold text-slate-800 mb-2">
-              {product.name}
-            </h1>
+              {/* Product Title */}
+              <h1 className="text-3xl font-extrabold text-slate-800 mb-2">
+                {product.name}
+              </h1>
 
-            {/* Dynamic Price Section (Changes based on size) */}
-            <div className="text-2xl font-bold text-slate-900 mb-2">
-              Rs {currentPrice}
-            </div>
+              {/* Dynamic Price Section */}
+              <div className="text-2xl font-bold text-slate-900 mb-2">
+                Rs {currentPrice}
+              </div>
 
-            {/* Dynamic Weight Section */}
-            <div className="text-xs text-gray-500 font-medium mb-6">
-              Weight: <span className="text-gray-800 font-bold">{currentWeight}</span>
-            </div>
+              {/* Dynamic Weight Section */}
+              <div className="text-xs text-gray-500 font-medium mb-6">
+                Weight: <span className="text-gray-800 font-bold">{currentWeight}</span>
+              </div>
 
-            {/* DYNAMIC SIZES SELECTOR (Lines Removed from here) */}
-            {product.sizes && product.sizes.length > 0 && (
-              <div className="mb-6">
-                <span className="text-xs font-bold text-gray-700 uppercase tracking-wider block mb-2.5">
-                  Select Pack Size:
-                </span>
-                <div className="flex flex-wrap gap-2.5">
-                  {product.sizes.map((s, i) => (
-                    <button
-                      key={i}
-                      type="button"
-                      onClick={() => setSelectedSize(s.size)}
-                      className={`px-4 py-2 text-xs font-bold rounded-lg border transition-all duration-200 ${
-                        selectedSize === s.size
-                          ? "bg-green-600 text-white border-green-600 shadow-sm"
-                          : "bg-gray-50 hover:bg-gray-100 text-gray-700 border-gray-200"
-                      }`}
-                    >
-                      {s.size}
-                    </button>
-                  ))}
+              {/* DYNAMIC SIZES SELECTOR */}
+              {product.sizes && product.sizes.length > 0 && (
+                <div className="mb-6">
+                  <span className="text-xs font-bold text-gray-700 uppercase tracking-wider block mb-2.5">
+                    Select Pack Size:
+                  </span>
+                  <div className="flex flex-wrap gap-2.5">
+                    {product.sizes.map((s, i) => (
+                      <button
+                        key={i}
+                        type="button"
+                        onClick={() => setSelectedSize(s.size)}
+                        className={`px-4 py-2 text-xs font-bold rounded-lg border transition-all duration-200 ${
+                          selectedSize === s.size
+                            ? "bg-green-600 text-white border-green-600 shadow-sm"
+                            : "bg-gray-50 hover:bg-gray-100 text-gray-700 border-gray-200"
+                        }`}
+                      >
+                        {s.size}
+                      </button>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
 
-            {/* Bullet Specifications (Lines Removed from here) */}
-            <ul className="space-y-2.5 text-xs text-slate-600 font-bold tracking-wide mb-6">
-              <li className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-800 rounded-full"></span>
-                HIGH QUALITY SEEDS
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-800 rounded-full"></span>
-                GERMINATION RATE = 80-85%
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-800 rounded-full"></span>
-                PRODUCT CODE : {String(product.id).padStart(3, '0')}
-              </li>
-            </ul>
-
-            {/* Actions: Quantity box and Button (Borders strictly here: top and bottom) */}
-            <div className="flex items-center gap-4 py-6 border-t border-b border-gray-200 mb-6">
-              {/* Custom Quantity box */}
-              <div className="flex items-center border border-gray-300 rounded-lg px-2 py-1.5 bg-gray-50">
-                <button
-                  onClick={() => setQty(qty > 1 ? qty - 1 : 1)}
-                  className="p-1 text-gray-500 hover:text-black transition"
-                >
-                  <Minus size={14} />
-                </button>
-                <span className="w-8 text-center font-bold text-gray-800 text-sm">{qty}</span>
-                <button
-                  onClick={() => setQty(qty + 1)}
-                  className="p-1 text-gray-500 hover:text-black transition"
-                >
-                  <Plus size={14} />
-                </button>
-              </div>
-
-              {/* Add To Cart Button */}
-              <button
-                onClick={handleAddToCart}
-                className="bg-green-600 hover:bg-green-700 text-white text-sm font-semibold px-8 py-2.5 rounded-lg transition-all duration-200 shadow-sm"
-              >
-                Add To Cart
-              </button>
+              {/* Bullet Specifications */}
+              <ul className="space-y-2.5 text-xs text-slate-600 font-bold tracking-wide mb-6">
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-slate-800 rounded-full"></span>
+                  HIGH QUALITY SEEDS
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-slate-800 rounded-full"></span>
+                  GERMINATION RATE = 80-85%
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-slate-800 rounded-full"></span>
+                  PRODUCT CODE : {String(product.id).padStart(3, '0')}
+                </li>
+              </ul>
             </div>
 
-            {/* Under-button Meta info */}
-            <div className="text-xs text-gray-500 space-y-1">
-              <div><strong className="text-gray-700">SKU:</strong> {String(product.id).padStart(3, '0')}</div>
-              <div><strong className="text-gray-700">CATEGORIES:</strong> {product.category?.toUpperCase() || "VEGETABLE SEEDS"}</div>
+            <div>
+              {/* Actions: Quantity box and Button */}
+              <div className="flex items-center gap-4 py-6 border-t border-b border-gray-200 mb-6">
+                {/* Custom Quantity box */}
+                <div className="flex items-center border border-gray-300 rounded-lg px-2 py-1.5 bg-gray-50">
+                  <button
+                    onClick={() => setQty(qty > 1 ? qty - 1 : 1)}
+                    className="p-1 text-gray-500 hover:text-black transition"
+                  >
+                    <Minus size={14} />
+                  </button>
+                  <span className="w-8 text-center font-bold text-gray-800 text-sm">{qty}</span>
+                  <button
+                    onClick={() => setQty(qty + 1)}
+                    className="p-1 text-gray-500 hover:text-black transition"
+                  >
+                    <Plus size={14} />
+                  </button>
+                </div>
+
+                {/* Add To Cart Button */}
+                <button
+                  onClick={handleAddToCart}
+                  className="bg-green-600 hover:bg-green-700 text-white text-sm font-semibold px-8 py-2.5 rounded-lg transition-all duration-200 shadow-sm"
+                >
+                  Add To Cart
+                </button>
+              </div>
+
+              {/* Under-button Meta info */}
+              <div className="text-xs text-gray-500 space-y-1">
+                <div><strong className="text-gray-700">SKU:</strong> {String(product.id).padStart(3, '0')}</div>
+                <div><strong className="text-gray-700">CATEGORIES:</strong> {product.category?.toUpperCase() || "VEGETABLE SEEDS"}</div>
+              </div>
             </div>
           </div>
         </div>
@@ -284,7 +289,6 @@ const ProductDetail = () => {
           
           {/* MIDDLE LEFT CONTENT */}
           <div className="lg:col-span-8 space-y-6">
-            
             {/* SCREENSHOT PATTERN SPECIFICATION */}
             <div className="bg-white rounded-3xl p-8 shadow-sm border-t-2 border-gray-100">
               <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-2">
@@ -353,9 +357,8 @@ const ProductDetail = () => {
             </div>
           </div>
 
-          {/* MIDDLE RIGHT SIDEBAR (Badges & Add Review Form) */}
+          {/* MIDDLE RIGHT SIDEBAR */}
           <div className="lg:col-span-4 space-y-6">
-            {/* Quick Badge Features */}
             <div className="grid grid-cols-3 gap-3">
               <div className="bg-white rounded-2xl p-3 text-center shadow-sm border border-gray-100">
                 <Truck className="mx-auto text-green-600 mb-1" size={20} />
@@ -498,7 +501,6 @@ const ProductDetail = () => {
                       </h3>
                     </Link>
                     
-                    {/* Price and Cart Button Section (Flex Container) */}
                     <div className="flex items-center justify-between mt-2.5">
                       <p className="text-green-600 font-bold text-sm">
                         Rs {item.price}
