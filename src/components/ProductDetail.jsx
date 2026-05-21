@@ -147,11 +147,6 @@ const ProductDetail = () => {
   return (
     <div className="bg-gray-50 min-h-screen pt-32 pb-16">
       <div className="max-w-7xl mx-auto px-4">
-        {/* BREADCRUMB */}
-        <div className="text-sm text-green-700 mb-6">
-          Home / Seeds / {product.category} / {product.name}
-        </div>
-
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           {/* LEFT IMAGES */}
           <div className="lg:col-span-4">
@@ -201,6 +196,10 @@ const ProductDetail = () => {
 
           {/* CENTER */}
           <div className="lg:col-span-5">
+            {/* BREADCRUMB */}
+            <div className="text-sm text-green-700 mb-6">
+              Home / Seeds / {product.category} / {product.name}
+            </div>
             <h1 className="text-3xl md:text-4xl font-bold text-gray-800 leading-tight">
               {product.name}
             </h1>
