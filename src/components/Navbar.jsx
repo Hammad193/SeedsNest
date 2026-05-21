@@ -27,7 +27,7 @@ const Navbar = () => {
   return (
     <>
       {/* MARQUEE */}
-      <div className="bg-green-600 text-white overflow-hidden whitespace-nowrap py-2 relative z-40">
+      <div className="relative w-full bg-green-600 text-white overflow-hidden whitespace-nowrap py-2 z-40">
         <div className="flex w-max animate-marquee">
           <div className="flex gap-10 px-10 text-sm font-medium">
             ✨ Lahore Offer: 20% OFF on Plants | 🎁 LHR20 | 📦 Advance Payment | 🚚 COD Available
@@ -102,8 +102,11 @@ const Navbar = () => {
 
           {/* MOBILE BUTTON (FIXED 100%) */}
           <button
-            className="lg:hidden w-10 h-10 flex items-center justify-center text-gray-900 z-[99999]"
+            type="button"
+            className="lg:hidden w-35
+            h-10 flex items-center justify-center text-gray-900 z-[99999] relative"
             onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle Menu"
           >
             {isOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
@@ -112,8 +115,10 @@ const Navbar = () => {
 
         {/* MOBILE MENU */}
         <div
-          className={`lg:hidden overflow-hidden transition-all duration-500 ${
-            isOpen ? "max-h-96 opacity-100 mt-5" : "max-h-0 opacity-0"
+          className={`lg:hidden overflow-hidden transition-all duration-500 ease-in-out ${
+            isOpen
+              ? "max-h-96 opacity-100 mt-5"
+              : "max-h-0 opacity-0 pointer-events-none"
           }`}
         >
           <div className="bg-white shadow-md rounded-xl mx-6 p-5">
@@ -124,7 +129,7 @@ const Navbar = () => {
                   <Link
                     to={item.path}
                     onClick={() => setIsOpen(false)}
-                    className="block text-gray-600 hover:text-green-600"
+                    className="block text-gray-600 hover:text-green-600 py-1"
                   >
                     {item.name}
                   </Link>
@@ -144,9 +149,14 @@ const Navbar = () => {
               <Link
                 to="/cart"
                 onClick={() => setIsOpen(false)}
-                className="flex items-center justify-center px-4 border rounded-full"
+                className="flex items-center justify-center px-4 border rounded-full relative"
               >
                 <ShoppingCart className="text-gray-600" />
+                {cartCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-green-600 text-white text-xs px-1.5 rounded-full">
+                    {cartCount}
+                  </span>
+                )}
               </Link>
             </div>
 
