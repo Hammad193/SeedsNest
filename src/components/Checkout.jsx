@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 export default function Checkout() {
   return (
-    <section className="py-20 px-6 md:px-20 bg-gray-50 m-20">
+    <section className="py-20 px-4 sm:px-6 lg:px-10 bg-gray-50">
 
-      {/* Heading */}
+      {/* HEADING */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -20,15 +20,15 @@ export default function Checkout() {
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+      {/* GRID */}
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10">
 
         {/* LEFT - FORM */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="bg-white p-8 rounded-2xl shadow-md"
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+          className="bg-white p-6 sm:p-8 rounded-2xl shadow-md"
         >
           <h3 className="text-xl font-semibold mb-6 text-gray-800">
             Billing Details
@@ -64,7 +64,7 @@ export default function Checkout() {
               placeholder="Order Notes (optional)"
               rows="4"
               className="w-full border p-3 rounded-lg outline-none focus:border-green-500"
-            ></textarea>
+            />
 
           </div>
         </motion.div>
@@ -72,10 +72,9 @@ export default function Checkout() {
         {/* RIGHT - ORDER SUMMARY */}
         <motion.div
           initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="bg-white p-8 rounded-2xl shadow-md"
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+          className="bg-white p-6 sm:p-8 rounded-2xl shadow-md"
         >
           <h3 className="text-xl font-semibold mb-6 text-gray-800">
             Order Summary
@@ -83,61 +82,34 @@ export default function Checkout() {
 
           <div className="space-y-4 text-sm text-gray-700">
 
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.1 }}
-              className="flex justify-between"
-            >
-              <span>Self-Watering Plant</span>
-              <span>$20.00</span>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 }}
-              className="flex justify-between"
-            >
-              <span>Garden Pot</span>
-              <span>$15.00</span>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3 }}
-              className="flex justify-between"
-            >
-              <span>Organic Compost</span>
-              <span>$10.00</span>
-            </motion.div>
+            {[
+              { name: "Self-Watering Plant", price: "$20.00" },
+              { name: "Garden Pot", price: "$15.00" },
+              { name: "Organic Compost", price: "$10.00" },
+            ].map((item, i) => (
+              <div key={i} className="flex justify-between">
+                <span>{item.name}</span>
+                <span>{item.price}</span>
+              </div>
+            ))}
 
             <hr />
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4 }}
-              className="flex justify-between font-semibold text-lg text-green-700"
-            >
+            <div className="flex justify-between font-semibold text-lg text-green-700">
               <span>Total</span>
               <span>$45.00</span>
-            </motion.div>
+            </div>
 
           </div>
 
-          {/* Button */}
-          <motion.div
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-          >
+          {/* BUTTON */}
+          <div className="mt-8">
             <Link to="/payment">
-              <button className="mt-8 w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl transition-all font-semibold cursor-pointer">
+              <button className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl transition font-semibold">
                 Place Order
               </button>
             </Link>
-          </motion.div>
+          </div>
 
           <p className="text-xs text-gray-500 mt-4 text-center">
             Secure checkout powered by your store
