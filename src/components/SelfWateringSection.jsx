@@ -11,15 +11,11 @@ const SelfWateringSection = () => {
           "url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1600&auto=format&fit=crop')",
       }}
     >
-
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/40"></div>
-
       <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
-
         {/* Content Layout */}
         <div className="flex justify-center lg:justify-end">
-
           {/* White Box */}
           <motion.div
             initial={{ opacity: 0, x: 80 }}
@@ -28,7 +24,6 @@ const SelfWateringSection = () => {
             viewport={{ once: true }}
             className="bg-white w-full max-w-2xl rounded-[35px] shadow-2xl p-8 lg:p-12"
           >
-
             {/* Heading */}
             <h2 className="text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight">
               Indoor Plants That
@@ -36,18 +31,15 @@ const SelfWateringSection = () => {
                 Water Themselves
               </span>
             </h2>
-
             {/* Paragraph */}
             <p className="text-gray-600 text-lg leading-relaxed mt-6">
               Enjoy vibrant greenery without the daily hassle.
               Your plant only drinks when it's thirsty!
             </p>
-
             {/* Button */}
             <button className="mt-8 bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105 shadow-lg cursor-pointer">
               SHOP SELF-WATERING PLANTS
             </button>
-
             {/* FAQ Link */}
             <div className="mt-5">
               <a
@@ -57,7 +49,6 @@ const SelfWateringSection = () => {
                 FAQS
               </a>
             </div>
-
             {/* Features */}
             <motion.div
               initial={{ opacity: 0 }}
@@ -65,7 +56,6 @@ const SelfWateringSection = () => {
               transition={{ staggerChildren: 0.2 }}
               className="grid sm:grid-cols-3 gap-6 mt-10"
             >
-
               {/* Item 1 */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -79,12 +69,10 @@ const SelfWateringSection = () => {
                     Beginner Friendly?
                   </h3>
                 </div>
-
                 <p className="text-gray-600 font-medium">
                   Yes
                 </p>
               </motion.div>
-
               {/* Item 2 */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -98,12 +86,10 @@ const SelfWateringSection = () => {
                     Indoor Use?
                   </h3>
                 </div>
-
                 <p className="text-gray-600 font-medium">
                   Yes
                 </p>
               </motion.div>
-
               {/* Item 3 */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -117,14 +103,11 @@ const SelfWateringSection = () => {
                     How Long?
                   </h3>
                 </div>
-
                 <p className="text-gray-600 font-medium">
                   10-15 days
                 </p>
               </motion.div>
-
             </motion.div>
-
           </motion.div>
         </div>
       </div>

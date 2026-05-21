@@ -14,7 +14,6 @@ const Shop = () => {
       transition={{ duration: 0.5 }}
       className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 mt-35 mb-10"
     >
-
       <motion.div
         initial="hidden"
         animate="show"
@@ -28,7 +27,6 @@ const Shop = () => {
         }}
         className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
       >
-
         {products.map((product) => (
           <motion.div
             key={product.id}
@@ -52,9 +50,7 @@ const Shop = () => {
             />
           </motion.div>
         ))}
-
       </motion.div>
-
     </motion.div>
   );
 };

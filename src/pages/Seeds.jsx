@@ -38,34 +38,27 @@ const categories = [
 const Seeds = () => {
   return (
     <section className="bg-[#f8faf8] py-16 px-4 sm:px-6 lg:px-10 pt-24">
-
       <div className="max-w-7xl mx-auto">
-
         {/* HEADING */}
         <div className="text-center mb-12">
           <p className="text-green-600 font-semibold uppercase tracking-widest">
             Explore Seeds
           </p>
-
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mt-3">
             Seeds Collection
           </h2>
-
           <p className="text-gray-600 mt-5 max-w-2xl mx-auto text-base sm:text-lg">
             High quality seeds for home gardening and farming.
           </p>
         </div>
-
         {/* GRID */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-
           {categories.map((category, index) => (
             <Link
               key={index}
               to={category.name === "Seeds" ? "/shop" : "#"}
               className="group bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100"
             >
-
               {/* IMAGE */}
               <div className="overflow-hidden h-56 sm:h-64 lg:h-72">
                 <img
@@ -74,31 +67,23 @@ const Seeds = () => {
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
               </div>
-
               {/* CONTENT */}
               <div className="p-5 sm:p-6 flex items-center justify-between">
-
                 <div>
                   <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 group-hover:text-green-600">
                     {category.name}
                   </h3>
-
                   <p className="text-gray-500 mt-1 text-xs sm:text-sm">
                     Explore products
                   </p>
                 </div>
-
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-green-100 text-green-600 flex items-center justify-center group-hover:bg-green-600 group-hover:text-white transition">
                   <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
-
               </div>
-
             </Link>
           ))}
-
         </div>
-
       </div>
     </section>
   );

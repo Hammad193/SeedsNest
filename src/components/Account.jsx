@@ -15,7 +15,6 @@ const Account = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("User Data Submit:", user);
-    // یہاں لاگ ان لاجک آئے گی
   };
 
   return (
@@ -26,13 +25,10 @@ const Account = () => {
         transition={{ duration: 0.5 }}
         className="max-w-md w-full bg-white p-8 rounded-3xl shadow-sm border border-gray-100"
       >
-        {/* Title */}
         <h1 className="text-3xl font-extrabold text-slate-800 text-center mb-6">
           Account Login
         </h1>
-
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Name Input */}
           <div>
             <label className="text-xs font-bold text-gray-700 uppercase tracking-wider block mb-1.5">
               Your Name
@@ -46,8 +42,6 @@ const Account = () => {
               onChange={handleChange}
             />
           </div>
-
-          {/* Email Input */}
           <div>
             <label className="text-xs font-bold text-gray-700 uppercase tracking-wider block mb-1.5">
               Email Address
@@ -61,8 +55,6 @@ const Account = () => {
               onChange={handleChange}
             />
           </div>
-
-          {/* Login Button */}
           <button
             type="submit"
             className="w-full bg-green-600 hover:bg-green-700 text-white text-sm font-semibold py-3 rounded-xl transition-all duration-200 shadow-sm mt-2 cursor-pointer"
@@ -70,8 +62,6 @@ const Account = () => {
             Login
           </button>
         </form>
-
-        {/* Register Link (Bilkul center aur clickable) */}
         <div className="mt-6 text-center">
           <Link
             to="/register"

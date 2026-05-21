@@ -6,7 +6,6 @@ import SelfWateringSection from "../components/SelfWateringSection";
 import PopularProducts from "../components/PopularProducts";
 import Testimonials from "../components/Testimonials";
 
-
 export default function Home() {
   return (
     <div>

@@ -6,14 +6,11 @@ import { motion } from "framer-motion";
 const HeroSection = () => {
   return (
     <section className="relative w-full overflow-hidden bg-white pt-32 pb-20">
-      
       {/* Background Blur Effects */}
       <div className="absolute top-10 left-10 w-72 h-72 bg-green-100 rounded-full blur-3xl opacity-40"></div>
       <div className="absolute bottom-0 right-0 w-80 h-80 bg-green-200 rounded-full blur-3xl opacity-30"></div>
-
       <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-
+      <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* LEFT CONTENT */}
           <motion.div
             initial={{ opacity: 0, x: -60 }}
@@ -21,7 +18,6 @@ const HeroSection = () => {
             transition={{ duration: 0.6 }}
             className="space-y-8"
           >
-
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
@@ -32,7 +28,6 @@ const HeroSection = () => {
               <Leaf className="w-4 h-4" />
               Trusted Organic Seed Store
             </motion.div>
-
             {/* Heading */}
             <div>
               <motion.h1
@@ -46,7 +41,6 @@ const HeroSection = () => {
                   Dream Garden
                 </span>
               </motion.h1>
-
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -58,7 +52,6 @@ const HeroSection = () => {
                 high-germination seeds.
               </motion.p>
             </div>
-
             {/* Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -72,14 +65,12 @@ const HeroSection = () => {
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition duration-300" />
                 </button>
               </Link>
-
               <Link to="/categories">
                 <button className="border-2 border-gray-200 hover:border-green-600 hover:text-green-600 text-gray-700 px-8 py-4 rounded-2xl font-semibold transition-all duration-300 cursor-pointer">
                   Explore Categories
                 </button>
               </Link>
             </motion.div>
-
             {/* Features */}
             <motion.div
               initial={{ opacity: 0 }}
@@ -87,7 +78,6 @@ const HeroSection = () => {
               transition={{ delay: 0.6 }}
               className="grid sm:grid-cols-3 gap-5 pt-6"
             >
-
               <motion.div whileHover={{ y: -5 }} className="bg-white border border-gray-100 shadow-md rounded-2xl p-5 hover:shadow-xl transition duration-300">
                 <Truck className="text-green-600 w-8 h-8 mb-3" />
                 <h3 className="font-bold text-gray-800">
@@ -97,7 +87,6 @@ const HeroSection = () => {
                   Quick nationwide shipping.
                 </p>
               </motion.div>
-
               <motion.div whileHover={{ y: -5 }} className="bg-white border border-gray-100 shadow-md rounded-2xl p-5 hover:shadow-xl transition duration-300">
                 <Leaf className="text-green-600 w-8 h-8 mb-3" />
                 <h3 className="font-bold text-gray-800">
@@ -107,7 +96,6 @@ const HeroSection = () => {
                   100% natural quality seeds.
                 </p>
               </motion.div>
-
               <motion.div whileHover={{ y: -5 }} className="bg-white border border-gray-100 shadow-md rounded-2xl p-5 hover:shadow-xl transition duration-300">
                 <ShieldCheck className="text-green-600 w-8 h-8 mb-3" />
                 <h3 className="font-bold text-gray-800">
@@ -117,10 +105,8 @@ const HeroSection = () => {
                   High germination guarantee.
                 </p>
               </motion.div>
-
             </motion.div>
           </motion.div>
-
           {/* RIGHT IMAGE SECTION */}
           <motion.div
             initial={{ opacity: 0, x: 60 }}
@@ -128,14 +114,12 @@ const HeroSection = () => {
             transition={{ duration: 0.6 }}
             className="relative flex justify-center"
           >
-
             <motion.div whileHover={{ scale: 1.02 }} className="relative">
               <img
                 src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?q=80&w=1200&auto=format&fit=crop"
                 alt="Seeds"
                 className="w-full max-w-xl rounded-2xl shadow-2xl object-cover"
               />
-
               {/* Floating Card 1 */}
               <motion.div
                 animate={{ y: [0, -10, 0] }}
@@ -149,7 +133,6 @@ const HeroSection = () => {
                   98%
                 </h3>
               </motion.div>
-
               {/* Floating Card 2 */}
               <motion.div
                 animate={{ y: [0, 10, 0] }}
@@ -163,11 +146,8 @@ const HeroSection = () => {
                   Orders Above Rs.3000
                 </h3>
               </motion.div>
-
             </motion.div>
-
           </motion.div>
-
         </div>
       </div>
     </section>

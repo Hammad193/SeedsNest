@@ -15,7 +15,6 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [showTopBar, setShowTopBar] = useState(true);
   const [seedDropdown, setSeedDropdown] = useState(false);
-
   const { cart } = useCart();
   const cartCount = cart.reduce((acc, item) => acc + item.qty, 0);
 
@@ -25,11 +24,9 @@ const Navbar = () => {
       setScrolled(scrollY > 20);
       setShowTopBar(scrollY < 10);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
   const navLinks = [
     { name: "Home", path: "/" },
     {
@@ -59,8 +56,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-
-      {/* NAVBAR */}
+     {/* NAVBAR */}
       <nav
         className={`fixed left-0 w-full z-[99999] border-b border-gray-100 transition-all duration-300 ${
           scrolled || !showTopBar
@@ -68,7 +64,6 @@ const Navbar = () => {
             : "top-10 bg-white py-3"
         }`}
       >
-        {/* Added w-full max-w-7xl Box Sizing Fix */}
         <div className="w-full max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between relative box-border">
           
           {/* LOGO */}
@@ -80,7 +75,6 @@ const Navbar = () => {
               Seed<span className="text-green-600">Nest</span>
             </h1>
           </Link>
-
           {/* DESKTOP MENU */}
           <ul className="hidden lg:flex items-center gap-10">
             {navLinks.map((item, i) => (
@@ -108,7 +102,6 @@ const Navbar = () => {
                         }`}
                       />
                     </div>
-
                     {/* DROPDOWN */}
                     <div
                       className={`absolute left-0 top-10 w-64 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden transition-all duration-300 ${
@@ -134,7 +127,6 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
-
           {/* RIGHT SIDE (DESKTOP ACTIONS) */}
           <div className="hidden lg:flex items-center gap-5">
             <Link to="/cart" className="relative">
@@ -145,11 +137,9 @@ const Navbar = () => {
                 </span>
               )}
             </Link>
-
             <Link to="/account">
               <User className="text-gray-600 w-6 h-6" />
             </Link>
-
             <Link
               to="/shop"
               className="bg-green-600 font-semibold text-white px-3 py-1.5 rounded-lg"
@@ -157,7 +147,6 @@ const Navbar = () => {
               Shop Now
             </Link>
           </div>
-
           {/* MOBILE BUTTON (Overflow & Spacing Fixed) */}
           <button
             className="lg:hidden w-10 h-10 flex items-center justify-center text-gray-800 hover:text-green-600 transition ml-auto relative z-[100000]"
@@ -167,7 +156,6 @@ const Navbar = () => {
             {isOpen ? <X size={26} /> : <Menu size={26} />}
           </button>
         </div>
-
         {/* MOBILE MENU */}
         <div
           className={`lg:hidden overflow-hidden transition-all duration-300 ${
@@ -195,7 +183,6 @@ const Navbar = () => {
                         >
                           {item.name}
                         </Link>
-
                         <button
                           onClick={() => setSeedDropdown(!seedDropdown)}
                           type="button"
@@ -208,7 +195,6 @@ const Navbar = () => {
                           />
                         </button>
                       </div>
-
                       {/* MOBILE DROPDOWN */}
                       <div
                         className={`overflow-hidden transition-all duration-300 ${
@@ -235,7 +221,6 @@ const Navbar = () => {
                 </li>
               ))}
             </ul>
-
             {/* MOBILE ACTIONS */}
             <div className="flex gap-3 mt-5">
               <Link
@@ -245,7 +230,6 @@ const Navbar = () => {
               >
                 Shop Now
               </Link>
-
               <Link
                 to="/cart"
                 onClick={() => setIsOpen(false)}

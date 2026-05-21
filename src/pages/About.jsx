@@ -4,7 +4,6 @@ import { Leaf, Users, Target, Heart } from "lucide-react";
 export default function About() {
   return (
     <section className="py-20 px-6 md:px-20 bg-gray-50 pt-24">
-
       {/* HERO */}
       <motion.div
         initial={{ opacity: 0, y: -40 }}
@@ -18,10 +17,8 @@ export default function About() {
           We are passionate about plants, seeds, and sustainable gardening solutions.
         </p>
       </motion.div>
-
       {/* CARDS */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-
         <div className="bg-white p-6 rounded-2xl shadow-md text-center">
           <Leaf className="text-green-600 mx-auto w-10 h-10" />
           <h3 className="font-semibold text-lg mt-3">Our Mission</h3>
@@ -29,7 +26,6 @@ export default function About() {
             To provide high-quality seeds and plants.
           </p>
         </div>
-
         <div className="bg-white p-6 rounded-2xl shadow-md text-center">
           <Users className="text-green-600 mx-auto w-10 h-10" />
           <h3 className="font-semibold text-lg mt-3">Community</h3>
@@ -37,7 +33,6 @@ export default function About() {
             We support farmers and gardeners.
           </p>
         </div>
-
         <div className="bg-white p-6 rounded-2xl shadow-md text-center">
           <Target className="text-green-600 mx-auto w-10 h-10" />
           <h3 className="font-semibold text-lg mt-3">Our Goal</h3>
@@ -45,7 +40,6 @@ export default function About() {
             Promote organic farming.
           </p>
         </div>
-
         <div className="bg-white p-6 rounded-2xl shadow-md text-center">
           <Heart className="text-green-600 mx-auto w-10 h-10" />
           <h3 className="font-semibold text-lg mt-3">Our Passion</h3>
@@ -53,9 +47,7 @@ export default function About() {
             We love nature and greenery.
           </p>
         </div>
-
       </div>
-
       {/* STORY */}
       <div className="mt-20 bg-white p-10 rounded-2xl shadow-md">
         <h2 className="text-2xl font-bold text-green-700 mb-4">
@@ -65,7 +57,6 @@ export default function About() {
           SeedNest started with a simple idea to make gardening easy and accessible.
         </p>
       </div>
-
     </section>
   );
 }

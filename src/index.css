@@ -13,3 +13,26 @@
 .animate-marquee {
   animation: marquee 18s linear infinite;
 }
+
+/* 📱 Mobile Screen Toaster Fix: Poori screen par sab se upar lane ke liye */
+@media (max-width: 768px) {
+  .Toastify__toast-container--top-right,
+  .Toastify__toast-container--top-center,
+  .Toastify__toast-container--top-left,
+  .Toastify__toast-container {
+    top: 10px !important;       /* Bilkul screen ke top par le aayega */
+    left: 0 !important;
+    right: 0 !important;
+    margin: 0 auto !important;
+    width: 90% !important;       /* Mobile screen ke mutabiq width perfect karega */
+    z-index: 999999999 !important; /* Kisi bhi navbar se zyada high value taake uper aa jaye */
+    position: fixed !important;  /* Screen ke upar fix rahega */
+  }
+
+  /* Toaster ke andar ka text aur spacing mobile ke liye mazeed behtar */
+  .Toastify__toast {
+    margin-bottom: 8px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  }
+}

@@ -9,7 +9,6 @@ export const ThemeProvider = ({ children }) => {
 
   useEffect(() => {
     const root = document.documentElement;
-
     if (dark) {
       root.classList.add("dark");
       localStorage.setItem("theme", "dark");
@@ -18,11 +17,9 @@ export const ThemeProvider = ({ children }) => {
       localStorage.setItem("theme", "light");
     }
   }, [dark]);
-
   const toggleTheme = () => {
     setDark((prev) => !prev);
   };
-
   return (
     <ThemeContext.Provider value={{ dark, toggleTheme }}>
       {children}

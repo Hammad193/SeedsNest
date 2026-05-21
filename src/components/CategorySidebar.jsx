@@ -10,18 +10,14 @@ const CategorySidebar = ({
 }) => {
   return (
     <div className="bg-white rounded-3xl shadow-md p-6 sticky top-32">
-
       <h2 className="text-2xl font-bold text-gray-800 mb-8">
         Filters
       </h2>
-
       {/* PRICE */}
       <div className="mb-8">
-
         <h3 className="font-semibold text-gray-700 mb-3">
           Price Range
         </h3>
-
         <select
           value={selectedPrice}
           onChange={(e) => setSelectedPrice(e.target.value)}
@@ -32,16 +28,12 @@ const CategorySidebar = ({
           <option value="2000">Below Rs.2000</option>
           <option value="3000">Below Rs.3000</option>
         </select>
-
       </div>
-
       {/* RATING */}
       <div className="mb-8">
-
         <h3 className="font-semibold text-gray-700 mb-3">
           Rating
         </h3>
-
         <select
           value={selectedRating}
           onChange={(e) => setSelectedRating(e.target.value)}
@@ -54,14 +46,11 @@ const CategorySidebar = ({
         </select>
 
       </div>
-
       {/* SIZE */}
       <div className="mb-8">
-
         <h3 className="font-semibold text-gray-700 mb-3">
           Product Size
         </h3>
-
         <select
           value={selectedSize}
           onChange={(e) => setSelectedSize(e.target.value)}
@@ -73,16 +62,11 @@ const CategorySidebar = ({
           <option value="300g">300g</option>
           <option value="500g">500g</option>
         </select>
-
       </div>
-
-      {/* STOCK */}
       <div>
-
         <h3 className="font-semibold text-gray-700 mb-3">
           Availability
         </h3>
-
         <select
           value={selectedStock}
           onChange={(e) => setSelectedStock(e.target.value)}
@@ -93,9 +77,7 @@ const CategorySidebar = ({
           <option value="Organic">Organic</option>
           <option value="Premium">Premium</option>
         </select>
-
       </div>
-
     </div>
   );
 };

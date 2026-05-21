@@ -14,6 +14,8 @@ import {
 } from "lucide-react";
 
 import { useCart } from "../context/CartContext";
+// ✅ Toastify Import
+import { toast } from "react-toastify";
 
 import {
   fruitsProducts,
@@ -67,6 +69,12 @@ const ProductDetail = () => {
     rating: 5,
   });
 
+  // ✅ 1. Auto Scroll to Top when Product Changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setQty(1); // New product par quantity reset to 1
+  }, [id]);
+
   // reset size when product changes
   useEffect(() => {
     setSelectedSize(defaultSize);
@@ -95,13 +103,54 @@ const ProductDetail = () => {
     (p) => p.category === product.category && p.id !== product.id
   );
 
+  // ✅ Add To Cart Handler (With Toast)
   const handleAddToCart = () => {
+    const isPackagedSize = product.sizes && product.sizes.length > 0;
+    
     addToCart({
       ...product,
+      id: isPackagedSize ? `${product.id}-${selectedSize}` : product.id,
+      productId: product.id,
       qty,
       size: selectedSize,
       price: currentPrice,
       weight: currentWeight,
+    });
+
+    const sizeBadge = isPackagedSize ? ` (${selectedSize})` : "";
+    toast.success(`${qty}x ${product.name}${sizeBadge} added to cart! 🛒`, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: false,
+      theme: "light",
+      className: "mt-20", // Custom class for additional styling if needed
+    });
+  };
+
+  // ✅ Quick Add Handler (With Toast)
+  const handleQuickAdd = (item) => {
+    const itemDefaultSize = item.sizes?.[0]?.size || "";
+    const itemDefaultPrice = item.sizes?.[0]?.price || item.price;
+    const itemDefaultWeight = item.sizes?.[0]?.weight || item.weight;
+
+    addToCart({
+      ...item,
+      id: itemDefaultSize ? `${item.id}-${itemDefaultSize}` : item.id,
+      productId: item.id,
+      qty: 1,
+      size: itemDefaultSize || undefined,
+      price: itemDefaultPrice,
+      weight: itemDefaultWeight,
+    });
+
+    toast.success(`${item.name} added via quick shop! ⚡`, {
+      position: "top-right",
+      autoClose: 1500,
+      hideProgressBar: true,
+      theme: "light",
+      className: "mt-20",
     });
   };
 
@@ -128,6 +177,13 @@ const ProductDetail = () => {
     };
 
     setReviews([newReview, ...reviews]);
+    
+    toast.info("Thank you! Your verified review has been posted. 📝", {
+      position: "top-right",
+      autoClose: 2500,
+      hideProgressBar: true,
+    });
+
     setReviewForm({
       name: "",
       review: "",
@@ -140,15 +196,11 @@ const ProductDetail = () => {
     <div className="bg-gray-50 min-h-screen pt-24 pb-16">
       <div className="max-w-7xl mx-auto px-6">
         
-        {/* ======================================================= */}
-        {/* UPPER SECTION: IMAGE LAYOUT & DETAILED INFO             */}
-        {/* ======================================================= */}
+        {/* UPPER SECTION: IMAGE LAYOUT & DETAILED INFO */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-stretch bg-white p-8 rounded-3xl shadow-sm">
           
           {/* LEFT: FULL HEIGHT IMAGE & RESPONSIVE THUMBNAILS */}
           <div className="flex flex-col-reverse md:flex-row gap-4 w-full h-full min-h-full">
-            
-            {/* Vertical/Horizontal Thumbnails */}
             <div className="flex flex-row md:flex-col gap-3 flex-shrink-0 overflow-x-auto md:overflow-y-auto max-w-full pb-2 md:pb-0" style={{ scrollbarWidth: "none" }}>
               {images.map((img, i) => (
                 <img
@@ -163,7 +215,6 @@ const ProductDetail = () => {
               ))}
             </div>
 
-            {/* Main Image Container: Mobile per 60vh Height aur Desktop per Parent k mutabiq full stretch */}
             <div className="flex-1 bg-gray-50 overflow-hidden w-full h-[60vh] md:h-full min-h-[400px] md:min-h-full flex items-center justify-center border border-gray-100 rounded-2xl relative">
               {activeImg && (
                 <img
@@ -178,7 +229,6 @@ const ProductDetail = () => {
           {/* RIGHT: CLEAN RETAIL LAYOUT WITH FUNCTIONAL SIZES */}
           <div className="flex flex-col justify-between h-full">
             <div>
-              {/* Breadcrumb Navigation */}
               <div className="text-[11px] uppercase tracking-wider text-gray-500 font-semibold mb-3 flex flex-wrap items-center gap-1">
                 <span className="text-green-600 hover:underline cursor-pointer">Home</span> / 
                 <span className="text-green-600 hover:underline cursor-pointer">Shop</span> / 
@@ -187,22 +237,20 @@ const ProductDetail = () => {
                 <span className="text-gray-800 font-bold">{product.name}</span>
               </div>
 
-              {/* Product Title */}
               <h1 className="text-3xl font-extrabold text-slate-800 mb-2">
                 {product.name}
               </h1>
 
-              {/* Dynamic Price Section */}
               <div className="text-2xl font-bold text-slate-900 mb-2">
                 Rs {currentPrice}
               </div>
 
-              {/* Dynamic Weight Section */}
-              <div className="text-xs text-gray-500 font-medium mb-6">
-                Weight: <span className="text-gray-800 font-bold">{currentWeight}</span>
-              </div>
+              {currentWeight && (
+                <div className="text-xs text-gray-500 font-medium mb-6">
+                  Weight: <span className="text-gray-800 font-bold">{currentWeight}</span>
+                </div>
+              )}
 
-              {/* DYNAMIC SIZES SELECTOR */}
               {product.sizes && product.sizes.length > 0 && (
                 <div className="mb-6">
                   <span className="text-xs font-bold text-gray-700 uppercase tracking-wider block mb-2.5">
@@ -227,7 +275,6 @@ const ProductDetail = () => {
                 </div>
               )}
 
-              {/* Bullet Specifications */}
               <ul className="space-y-2.5 text-xs text-slate-600 font-bold tracking-wide mb-6">
                 <li className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 bg-slate-800 rounded-full"></span>
@@ -245,35 +292,31 @@ const ProductDetail = () => {
             </div>
 
             <div>
-              {/* Actions: Quantity box and Button */}
               <div className="flex items-center gap-4 py-6 border-t border-b border-gray-200 mb-6">
-                {/* Custom Quantity box */}
                 <div className="flex items-center border border-gray-300 rounded-lg px-2 py-1.5 bg-gray-50">
                   <button
                     onClick={() => setQty(qty > 1 ? qty - 1 : 1)}
-                    className="p-1 text-gray-500 hover:text-black transition"
+                    className="p-1 text-gray-500 hover:text-black transition cursor-pointer"
                   >
                     <Minus size={14} />
                   </button>
                   <span className="w-8 text-center font-bold text-gray-800 text-sm">{qty}</span>
                   <button
                     onClick={() => setQty(qty + 1)}
-                    className="p-1 text-gray-500 hover:text-black transition"
+                    className="p-1 text-gray-500 hover:text-black transition cursor-pointer"
                   >
                     <Plus size={14} />
                   </button>
                 </div>
 
-                {/* Add To Cart Button */}
                 <button
                   onClick={handleAddToCart}
-                  className="bg-green-600 hover:bg-green-700 text-white text-sm font-semibold px-8 py-2.5 rounded-lg transition-all duration-200 shadow-sm"
+                  className="bg-green-600 hover:bg-green-700 text-white text-sm font-semibold px-8 py-2.5 rounded-lg transition-all duration-200 shadow-sm cursor-pointer"
                 >
                   Add To Cart
                 </button>
               </div>
 
-              {/* Under-button Meta info */}
               <div className="text-xs text-gray-500 space-y-1">
                 <div><strong className="text-gray-700">SKU:</strong> {String(product.id).padStart(3, '0')}</div>
                 <div><strong className="text-gray-700">CATEGORIES:</strong> {product.category?.toUpperCase() || "VEGETABLE SEEDS"}</div>
@@ -282,14 +325,9 @@ const ProductDetail = () => {
           </div>
         </div>
 
-        {/* ======================================================= */}
-        {/* MIDDLE SECTION: DESCRIPTIONS, ADVANTAGES & SIDEBAR       */}
-        {/* ======================================================= */}
+        {/* MIDDLE SECTION */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mt-12">
-          
-          {/* MIDDLE LEFT CONTENT */}
           <div className="lg:col-span-8 space-y-6">
-            {/* SCREENSHOT PATTERN SPECIFICATION */}
             <div className="bg-white rounded-3xl p-8 shadow-sm border-t-2 border-gray-100">
               <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-2">
                 Description
@@ -313,7 +351,6 @@ const ProductDetail = () => {
               </ul>
             </div>
 
-            {/* EXTENDED DESCRIPTION */}
             <div className="bg-white rounded-3xl p-6 shadow-sm">
               <h3 className="text-xl font-semibold mb-4">Product Overview</h3>
               <p className="text-gray-600 leading-8 text-sm">
@@ -323,7 +360,6 @@ const ProductDetail = () => {
               </p>
             </div>
 
-            {/* ADVANTAGES & DISADVANTAGES */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-white rounded-3xl p-6 shadow-sm">
                 <h3 className="text-lg font-semibold mb-4 text-slate-800">Advantages</h3>
@@ -345,7 +381,6 @@ const ProductDetail = () => {
               </div>
             </div>
 
-            {/* PLANT CARE */}
             <div className="bg-white rounded-3xl p-6 shadow-sm">
               <h3 className="text-xl font-semibold mb-4 text-slate-800">Plant Care Instructions</h3>
               <ul className="space-y-3 text-sm text-gray-600 leading-7">
@@ -357,7 +392,6 @@ const ProductDetail = () => {
             </div>
           </div>
 
-          {/* MIDDLE RIGHT SIDEBAR */}
           <div className="lg:col-span-4 space-y-6">
             <div className="grid grid-cols-3 gap-3">
               <div className="bg-white rounded-2xl p-3 text-center shadow-sm border border-gray-100">
@@ -374,7 +408,6 @@ const ProductDetail = () => {
               </div>
             </div>
 
-            {/* REVIEW FORM */}
             <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 sticky top-28">
               <h3 className="text-md font-semibold flex items-center gap-2 mb-4 text-gray-800">
                 <MessageCircle size={18} className="text-green-600" />
@@ -402,7 +435,7 @@ const ProductDetail = () => {
 
                 <button
                   type="submit"
-                  className="w-full bg-slate-800 hover:bg-slate-900 text-white text-sm py-2.5 rounded-xl font-medium transition"
+                  className="w-full bg-slate-800 hover:bg-slate-900 text-white text-sm py-2.5 rounded-xl font-medium transition cursor-pointer"
                 >
                   Submit Review
                 </button>
@@ -411,11 +444,7 @@ const ProductDetail = () => {
           </div>
         </div>
 
-        {/* ======================================================= */}
-        {/* LOWER SECTION: REVIEWS BOARD & RELATED PRODUCTS         */}
-        {/* ======================================================= */}
-        
-        {/* CUSTOMER REVIEWS */}
+        {/* LOWER SECTION */}
         <div className="mt-16 bg-white p-8 rounded-3xl shadow-sm">
           <div className="flex items-center gap-3 mb-6">
             <h2 className="text-2xl font-bold text-slate-800">Customer Reviews</h2>
@@ -460,14 +489,14 @@ const ProductDetail = () => {
               <div className="flex gap-2">
                 <button
                   onClick={scrollLeft}
-                  className="p-2.5 bg-white shadow-sm border rounded-full hover:bg-gray-50 text-gray-700 transition"
+                  className="p-2.5 bg-white shadow-sm border rounded-full hover:bg-gray-50 text-gray-700 transition cursor-pointer"
                 >
                   <ChevronLeft size={18} />
                 </button>
 
                 <button
                   onClick={scrollRight}
-                  className="p-2.5 bg-white shadow-sm border rounded-full hover:bg-gray-50 text-gray-700 transition"
+                  className="p-2.5 bg-white shadow-sm border rounded-full hover:bg-gray-50 text-gray-700 transition cursor-pointer"
                 >
                   <ChevronRight size={18} />
                 </button>
@@ -479,43 +508,52 @@ const ProductDetail = () => {
               className="flex gap-6 overflow-x-auto scroll-smooth pb-4 snap-x hide-scrollbar"
               style={{ scrollbarWidth: "none" }}
             >
-              {relatedProducts.map((item) => (
-                <div
-                  key={item.id}
-                  className="min-w-[240px] max-w-[240px] bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all duration-300 relative snap-start group"
-                >
-                  <Link to={`/product/${item.id}`}>
-                    <div className="h-48 w-full overflow-hidden bg-gray-50">
-                      <img
-                        src={Array.isArray(item.image) ? item.image[0] : item.image}
-                        alt={item.name}
-                        className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
-                      />
-                    </div>
-                  </Link>
+              {relatedProducts.map((item) => {
+                // 🔍 Dynamic Fallback Check: Pehle nested array check karega, phir direct price variable check karega
+                const itemPrice = 
+                  (item.sizes && item.sizes.length > 0 ? item.sizes[0].price : null) || 
+                  item.price || 
+                  "0";
 
-                  <div className="p-4">
+                return (
+                  <div
+                    key={item.id}
+                    className="min-w-[240px] max-w-[240px] bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all duration-300 relative snap-start group"
+                  >
                     <Link to={`/product/${item.id}`}>
-                      <h3 className="text-sm font-semibold text-gray-800 line-clamp-1">
-                        {item.name}
-                      </h3>
+                      <div className="h-48 w-full overflow-hidden bg-gray-50">
+                        <img
+                          src={Array.isArray(item.image) ? item.image[0] : item.image}
+                          alt={item.name}
+                          className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+                        />
+                      </div>
                     </Link>
-                    
-                    <div className="flex items-center justify-between mt-2.5">
-                      <p className="text-green-600 font-bold text-sm">
-                        Rs {item.price}
-                      </p>
+
+                    <div className="p-4">
+                      <Link to={`/product/${item.id}`}>
+                        <h3 className="text-sm font-semibold text-gray-800 line-clamp-1">
+                          {item.name}
+                        </h3>
+                      </Link>
                       
-                      <button
-                        onClick={() => addToCart({ ...item, qty: 1 })}
-                        className="bg-gray-50 text-gray-600 hover:bg-green-600 hover:text-white transition w-8 h-8 rounded-full flex items-center justify-center border border-gray-100 shadow-sm"
-                      >
-                        <ShoppingCart size={13} />
-                      </button>
+                      <div className="flex items-center justify-between mt-2.5">
+                        {/* ✅ Ab yahan dynamic check ki wajah se price blank nahi aayegi */}
+                        <p className="text-green-600 font-bold text-sm">
+                          Rs {itemPrice}
+                        </p>
+                        
+                        <button
+                          onClick={() => handleQuickAdd(item)}
+                          className="bg-gray-50 text-gray-600 hover:bg-green-600 hover:text-white transition w-8 h-8 rounded-full flex items-center justify-center border border-gray-100 shadow-sm cursor-pointer"
+                        >
+                          <ShoppingCart size={13} />
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         )}

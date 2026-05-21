@@ -19,7 +19,6 @@ export default function Footer() {
             help you grow a healthy and green environment at home and farms.
           </p>
         </motion.div>
-
         {/* TOP CATEGORIES */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -28,7 +27,6 @@ export default function Footer() {
           viewport={{ once: true }}
         >
           <h2 className="text-xl font-bold mb-4">Top Categories</h2>
-
           <ul className="space-y-2 text-sm text-gray-300">
             {[
               "Vegetable seeds",
@@ -48,7 +46,6 @@ export default function Footer() {
             ))}
           </ul>
         </motion.div>
-
         {/* USEFUL LINKS */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -57,7 +54,6 @@ export default function Footer() {
           viewport={{ once: true }}
         >
           <h2 className="text-xl font-bold mb-4">Useful Links</h2>
-
           <ul className="space-y-2 text-sm text-gray-300">
             {[
               "User Dashboard",
@@ -75,7 +71,6 @@ export default function Footer() {
             ))}
           </ul>
         </motion.div>
-
         {/* CONTACT / ADDRESS */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -84,32 +79,26 @@ export default function Footer() {
           viewport={{ once: true }}
         >
           <h2 className="text-xl font-bold mb-4">About Company</h2>
-
           <div className="text-sm text-gray-300 space-y-3 leading-relaxed">
             <p>
               <span className="text-green-400 font-semibold">Address:</span><br />
               Nursery E block opposite 89 E Model Town Lahore
             </p>
-
             <p>
               <span className="text-green-400 font-semibold">Phone:</span><br />
               03123456798
             </p>
-
             <p>
               <span className="text-green-400 font-semibold">Email:</span><br />
               abc@gmail.com
             </p>
           </div>
         </motion.div>
-
       </div>
-
       {/* Bottom bar */}
       <div className="mt-12 border-t border-gray-700 pt-6 text-center text-gray-400 text-sm">
         © {new Date().getFullYear()} Your Website Developed by syedZada Hammad | Your Nursery Website. All rights reserved.
       </div>
-
     </footer>
   );
 }

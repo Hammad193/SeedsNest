@@ -53,19 +53,15 @@ const FlowerCategory = () => {
 
   return (
     <div className="bg-gray-50 min-h-screen">
-
       {/* HERO */}
       <CategoryHero
         title="Flower Seeds Collection"
         description="Explore premium flower seeds with vibrant colors and high-quality growth for your home garden and outdoor spaces."
         route="Home / Seeds / Flowers"
       />
-
       {/* MAIN SECTION */}
       <section className="max-w-7xl mx-auto px-4 py-16">
-
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-10">
-
           {/* SIDEBAR */}
           <div>
             <CategorySidebar
@@ -79,17 +75,13 @@ const FlowerCategory = () => {
               setSelectedPrice={setSelectedPrice}
             />
           </div>
-
           {/* PRODUCTS */}
           <div className="lg:col-span-3">
-
             {/* TOP BAR */}
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
-
               <h2 className="text-3xl font-bold text-gray-800">
                 Flower Products
               </h2>
-
               {/* SORT */}
               <select
                 value={sortOption}
@@ -107,25 +99,18 @@ const FlowerCategory = () => {
                   Top Rated
                 </option>
               </select>
-
             </div>
-
             {/* PRODUCTS GRID */}
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
-
               {filteredProducts.map((product) => (
                 <CategoryProductCard
                   key={product.id}
                   product={product}
                 />
               ))}
-
-            </div>
-
           </div>
-
+          </div>
         </div>
-
       </section>
     </div>
   );

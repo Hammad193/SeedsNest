@@ -121,7 +121,6 @@ const FeaturedProducts = () => {
   return (
     <section className="bg-white py-20">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
-
         {/* Heading Animation */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -133,20 +132,16 @@ const FeaturedProducts = () => {
           <p className="text-green-600 font-semibold uppercase tracking-[4px]">
             Best Products
           </p>
-
           <h2 className="text-4xl lg:text-5xl font-extrabold text-gray-900 mt-3">
             Featured Products
           </h2>
-
           <p className="text-gray-600 mt-5 max-w-2xl mx-auto text-lg">
             Discover our premium collection of seeds, plants,
             gardening essentials, and organic care products.
           </p>
         </motion.div>
-
         {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-
           {products.map((product, index) => (
             <motion.div
               key={index}
@@ -157,52 +152,38 @@ const FeaturedProducts = () => {
               whileHover={{ y: -8 }}
               className="group bg-white rounded-[30px] overflow-hidden border border-gray-100 shadow-md hover:shadow-2xl transition-all duration-500"
             >
-
               {/* Product Image */}
               <div className="relative overflow-hidden">
-
                 <img
                   src={product.image}
                   alt={product.name}
                   className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-700 cursor-pointer"
                 />
-
                 {/* Sale Badge */}
                 <div className="absolute top-4 left-4 bg-green-600 text-white px-4 py-1 rounded-full text-sm font-semibold shadow-lg">
                   {product.sale}
                 </div>
-
               </div>
-
               {/* Product Info */}
               <div className="p-6">
-
                 <h3 className="text-xl font-bold text-gray-800 group-hover:text-green-600 transition duration-300">
                   {product.name}
                 </h3>
-
                 <div className="flex items-center justify-between mt-5">
-
                   <p className="text-2xl font-extrabold text-green-600">
                     {product.price}
                   </p>
-
                   <motion.button
                     whileTap={{ scale: 0.9 }}
                     className="w-12 h-12 rounded-full bg-green-100 text-green-600 flex items-center justify-center hover:bg-green-600 hover:text-white transition-all duration-300"
                   >
                     <ShoppingCart className="w-5 h-5" />
                   </motion.button>
-
                 </div>
-
               </div>
             </motion.div>
           ))}
-
         </div>
-
-        {/* Button Animation */}
         <motion.div
           whileHover={{ scale: 1.05 }}
           className="flex justify-center mt-14"
