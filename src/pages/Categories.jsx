@@ -37,27 +37,26 @@ const categories = [
 
 const Categories = () => {
   return (
-    <section className="bg-[#f8faf8] py-16 px-4 sm:px-6 lg:px-10 pt-24">
-
+    <section className="bg-[#f8faf8] py-14 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-10 pt-24">
       <div className="max-w-7xl mx-auto">
 
         {/* HEADING */}
-        <div className="text-center mb-12">
-          <p className="text-green-600 font-semibold uppercase tracking-widest">
+        <div className="text-center mb-10 sm:mb-12 lg:mb-14">
+          <p className="text-green-600 font-semibold uppercase tracking-widest text-xs sm:text-sm">
             Explore Categories
           </p>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mt-3">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mt-3">
             Shop By Category
           </h2>
 
-          <p className="text-gray-600 mt-5 max-w-2xl mx-auto text-base sm:text-lg">
+          <p className="text-gray-600 mt-4 sm:mt-5 max-w-2xl mx-auto text-sm sm:text-base lg:text-lg">
             Discover premium gardening essentials, seeds and plants.
           </p>
         </div>
 
         {/* GRID */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
 
           {categories.map((category, index) => (
             <Link
@@ -67,7 +66,7 @@ const Categories = () => {
             >
 
               {/* IMAGE */}
-              <div className="overflow-hidden h-56 sm:h-64 lg:h-72">
+              <div className="overflow-hidden aspect-[4/3]">
                 <img
                   src={category.image}
                   alt={category.name}
@@ -76,10 +75,10 @@ const Categories = () => {
               </div>
 
               {/* CONTENT */}
-              <div className="p-5 sm:p-6 flex items-center justify-between">
+              <div className="p-4 sm:p-5 lg:p-6 flex items-center justify-between">
 
-                <div>
-                  <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 group-hover:text-green-600">
+                <div className="min-w-0">
+                  <h3 className="text-base sm:text-lg lg:text-xl font-bold text-gray-800 group-hover:text-green-600 transition line-clamp-1">
                     {category.name}
                   </h3>
 
@@ -88,7 +87,7 @@ const Categories = () => {
                   </p>
                 </div>
 
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-green-100 text-green-600 flex items-center justify-center group-hover:bg-green-600 group-hover:text-white transition">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full bg-green-100 text-green-600 flex items-center justify-center group-hover:bg-green-600 group-hover:text-white transition flex-shrink-0">
                   <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
 

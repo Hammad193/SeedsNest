@@ -62,20 +62,21 @@ const Navbar = () => {
 
       {/* NAVBAR */}
       <nav
-        className={`fixed left-0 w-full z-[9999] transition-all duration-300 ${
+        className={`fixed left-0 w-full z-[99999] border-b border-gray-100 transition-all duration-300 ${
           scrolled || !showTopBar
             ? "top-0 bg-white/95 shadow-lg backdrop-blur-md py-3"
             : "top-10 bg-white py-3"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
+        {/* Added w-full max-w-7xl Box Sizing Fix */}
+        <div className="w-full max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between relative box-border">
           
           {/* LOGO */}
-          <Link to="/" className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2 shrink-0">
             <div className="bg-green-600 p-2 rounded-full">
               <Leaf className="text-white w-5 h-5" />
             </div>
-            <h1 className="text-lg font-bold">
+            <h1 className="text-lg font-bold whitespace-nowrap">
               Seed<span className="text-green-600">Nest</span>
             </h1>
           </Link>
@@ -134,7 +135,7 @@ const Navbar = () => {
             ))}
           </ul>
 
-          {/* RIGHT SIDE */}
+          {/* RIGHT SIDE (DESKTOP ACTIONS) */}
           <div className="hidden lg:flex items-center gap-5">
             <Link to="/cart" className="relative">
               <ShoppingCart className="text-gray-600 w-6 h-6" />
@@ -151,18 +152,19 @@ const Navbar = () => {
 
             <Link
               to="/shop"
-              className="bg-green-600 text-white px-4 py-2 rounded-full"
+              className="bg-green-600 font-semibold text-white px-3 py-1.5 rounded-lg"
             >
               Shop Now
             </Link>
           </div>
 
-          {/* MOBILE BUTTON */}
+          {/* MOBILE BUTTON (Overflow & Spacing Fixed) */}
           <button
-            className="lg:hidden w-10 h-10 flex items-center justify-center z-10000"
+            className="lg:hidden w-10 h-10 flex items-center justify-center text-gray-800 hover:text-green-600 transition ml-auto relative z-[100000]"
             onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle Menu"
           >
-            {isOpen ? <X size={28} /> : <Menu size={28} />}
+            {isOpen ? <X size={26} /> : <Menu size={26} />}
           </button>
         </div>
 
@@ -196,6 +198,7 @@ const Navbar = () => {
 
                         <button
                           onClick={() => setSeedDropdown(!seedDropdown)}
+                          type="button"
                         >
                           <ChevronDown
                             size={18}
@@ -238,7 +241,7 @@ const Navbar = () => {
               <Link
                 to="/shop"
                 onClick={() => setIsOpen(false)}
-                className="flex-1 bg-green-600 text-white py-3 text-center rounded-full"
+                className="flex-1 bg-green-600 text-white py-3 text-center rounded-lg"
               >
                 Shop Now
               </Link>

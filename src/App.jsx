@@ -17,6 +17,7 @@ import VegetableCategory from "./pages/VegetableCategory";
 import FruitsCategory from "./pages/FruitsCategory";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import RegisterPage from "./components/RegisterPage";
 
 function App() {
   return (<>
@@ -35,6 +36,7 @@ function App() {
       <Route path="/seeds/flowers" element={<FlowerCategory />} />
       <Route path="/seeds/vegetables" element={<VegetableCategory />} />
       <Route path="/seeds/fruits" element={<FruitsCategory />} />
+      <Route path="/register" element={<RegisterPage />} />
 
       {/* DYNAMIC ROUTES */}
       <Route path="/category/:name" element={<CategoryPage />} />

@@ -7,7 +7,7 @@ const CategoryProductCard = ({ product }) => {
   return (
     <div
       onClick={() => navigate(`/product/${product.id}`)}
-      className="group bg-white rounded-[28px] overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100 cursor-pointer"
+      className="group bg-white rounded-[10px] overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100 cursor-pointer"
     >
 
       {/* IMAGE */}
@@ -41,17 +41,17 @@ const CategoryProductCard = ({ product }) => {
         </div>
 
         {/* NAME */}
-        <h3 className="text-xl font-bold text-gray-800 mt-3">
+        <h3 className="text-xl font-bold text-gray-800">
           {product.name}
         </h3>
 
         {/* SIZE */}
-        <p className="text-gray-500 mt-2">
+        <p className="text-gray-500 ">
           Size : {product.size}
         </p>
 
         {/* PRICE */}
-        <div className="mt-4 flex items-center justify-between">
+        <div className="flex items-center justify-between">
 
           <h2 className="text-2xl font-bold text-green-600">
             Rs. {product.price}
@@ -65,7 +65,7 @@ const CategoryProductCard = ({ product }) => {
 
         {/* BUTTON (optional stop propagation if needed later) */}
         <button
-          className="mt-5 w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-full flex items-center justify-center gap-2 transition duration-300"
+          className="mt-2 w-full h-10 bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg flex items-center justify-center gap-2 transition duration-300"
         >
           <ShoppingCart size={18} />
           Add To Cart

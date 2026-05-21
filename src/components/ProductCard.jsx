@@ -10,12 +10,11 @@ const ProductCard = ({ product, onAddToCart }) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
       viewport={{ once: true }}
-      whileHover={{ y: -8 }}
+      whileHover={{ y: -6 }}
       className="group w-full bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-md hover:shadow-2xl transition-all duration-500"
     >
-
-      {/* IMAGE */}
-      <div className="relative overflow-hidden">
+      {/* IMAGE SECTION */}
+      <div className="overflow-hidden aspect-[4/3]">
 
         {/* SALE BADGE */}
         {product.sale && (
@@ -23,7 +22,7 @@ const ProductCard = ({ product, onAddToCart }) => {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ duration: 0.3 }}
-            className="absolute top-3 left-3 bg-green-600 text-white px-3 py-1 rounded-full text-xs sm:text-sm font-semibold shadow"
+            className="absolute top-3 left-3 z-10 bg-green-600 text-white px-3 py-1 rounded-full text-xs sm:text-sm font-semibold shadow"
           >
             {product.sale}
           </motion.div>
@@ -31,10 +30,10 @@ const ProductCard = ({ product, onAddToCart }) => {
 
         {/* CART BUTTON */}
         <motion.button
-          whileHover={{ scale: 1.15, rotate: 5 }}
+          whileHover={{ scale: 1.1, rotate: 5 }}
           whileTap={{ scale: 0.9 }}
           onClick={() => onAddToCart(product)}
-          className="absolute top-3 right-3 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-green-100 flex items-center justify-center hover:bg-green-600 transition-all duration-300 active:scale-95"
+          className="absolute top-3 right-3 z-10 w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-green-600 transition-all duration-300"
         >
           <ShoppingCart className="w-4 h-4 sm:w-5 sm:h-5 text-green-600 group-hover:text-white transition" />
         </motion.button>
@@ -44,40 +43,34 @@ const ProductCard = ({ product, onAddToCart }) => {
           <img
             src={product.image}
             alt={product.name}
-            className="w-full h-64 sm:h-72 object-cover group-hover:scale-110 transition-transform duration-700"
+            className="w-full h-44 sm:h-52 md:h-60 lg:h-64 object-cover group-hover:scale-110 transition-transform duration-700"
           />
         </Link>
       </div>
 
       {/* CONTENT */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ delay: 0.1 }}
-        className="p-4 sm:p-6"
-      >
+      <div className="p-3 sm:p-4 md:p-5 lg:p-6">
 
+        {/* TITLE */}
         <Link to={`/product/${product.id}`}>
-          <h3 className="text-base sm:text-xl font-bold text-gray-800 group-hover:text-green-600 transition duration-300 line-clamp-1">
+          <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-800 group-hover:text-green-600 transition line-clamp-1">
             {product.name}
           </h3>
         </Link>
 
-        <div className="flex items-center justify-between mt-4">
-
-          <p className="text-lg sm:text-2xl font-extrabold text-green-600">
+        {/* PRICE + SIZE */}
+        <div className="flex items-center justify-between mt-3 sm:mt-4">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-extrabold text-green-600">
             {product.price}
           </p>
 
           {product.size && (
-            <span className="text-xs sm:text-sm text-gray-500">
+            <span className="text-xs sm:text-sm text-gray-500 font-medium">
               {product.size}
             </span>
           )}
-
         </div>
-
-      </motion.div>
+      </div>
     </motion.div>
   );
 };
