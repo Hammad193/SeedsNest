@@ -145,17 +145,17 @@ const ProductDetail = () => {
         {/* ======================================================= */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start bg-white p-8 rounded-3xl shadow-sm">
           
-          {/* LEFT: VERTICAL THUMBNAILS & ACTIVE IMAGE DISPLAY */}
-          <div className="flex gap-4">
-            {/* Vertical Thumbnails */}
-            <div className="flex flex-col gap-3 flex-shrink-0">
+          {/* LEFT: RESPONSIVE THUMBNAILS & ACTIVE IMAGE DISPLAY */}
+          <div className="flex flex-col-reverse md:flex-row gap-4 w-full">
+            {/* Vertical/Horizontal Thumbnails */}
+            <div className="flex flex-row md:flex-col gap-3 flex-shrink-0 overflow-x-auto md:overflow-y-auto max-w-full pb-2 md:pb-0" style={{ scrollbarWidth: "none" }}>
               {images.map((img, i) => (
                 <img
                   key={i}
                   src={img}
                   alt=""
                   onClick={() => setActiveImg(img)}
-                  className={`w-20 h-20 object-cover cursor-pointer border-2 transition ${
+                  className={`w-16 h-16 md:w-20 md:h-20 object-cover cursor-pointer border-2 transition flex-shrink-0 rounded-md ${
                     activeImg === img ? "border-green-600 shadow-sm" : "border-gray-200"
                   }`}
                 />
@@ -163,7 +163,7 @@ const ProductDetail = () => {
             </div>
 
             {/* Main Image container */}
-            <div className="flex-1 bg-gray-50 overflow-hidden max-h-[500px] flex items-center justify-center border border-gray-100">
+            <div className="flex-1 bg-gray-50 overflow-hidden min-h-[300px] max-h-[500px] flex items-center justify-center border border-gray-100 rounded-2xl">
               {activeImg && (
                 <img
                   src={activeImg}
