@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
-import { Leaf, Users, Target, Heart } from "lucide-react";
+import { Leaf, Users, Target, Heart, HeartOff } from "lucide-react";
 
 export default function About() {
   return (
+    <>
     <section className="py-20 px-6 md:px-20 bg-gray-50 pt-24">
       {/* HERO */}
       <motion.div
@@ -58,5 +59,6 @@ export default function About() {
         </p>
       </div>
     </section>
+    </>
   );
 }
