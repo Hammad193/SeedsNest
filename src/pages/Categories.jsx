@@ -63,11 +63,6 @@ const Categories = () => {
             <p className="text-green-600 font-semibold uppercase tracking-widest text-xs sm:text-sm">
               Explore Categories
             </p>
-
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mt-3">
-              Browse All Categories
-            </h2>
-
             <p className="text-gray-600 mt-4 sm:mt-5 max-w-2xl mx-auto text-sm sm:text-base lg:text-lg">
               Choose your desired category and explore premium gardening products.
             </p>
